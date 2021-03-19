@@ -49,14 +49,9 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! elpy)
-(package! company-jedi)
-;;(package! dumb-jump)
 (package! nswbuff)
 
-;; (package! counsel-etags)
 (package! visual-regexp)
 (package! visual-regexp-steroids)
-;; (package! ir-black-theme)
 (package! super-save)
 (package! realgud-ipdb)

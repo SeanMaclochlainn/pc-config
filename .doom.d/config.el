@@ -12,21 +12,17 @@
 (setq helm-candidate-number-limit 300)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; (use-package! elpy
-;;   :after python
-;;   :init
-;;   (advice-add 'python-mode :before 'elpy-enable)
-;;   (elpy-enable))
 
 (use-package! nswbuff                    ; Quick switching between buffers
   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
           ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
   (:map nswbuff-override-map
 	("b" . nswbuff-kill-this-buffer))
-          ;;("b" nswbuff-override-map nswbuff-kill-this-buffer))
   :config (setq nswbuff-buffer-list-function #'nswbuff-projectile-buffer-list
                 nswbuff-display-intermediate-buffers t
-                nswbuff-exclude-buffer-regexps '("^ .*" "^\\*.*\\*")))
+                nswbuff-status-window-layout 'minibuffer
+                ;nswbuff-exclude-buffer-regexps '("^ .*" "^\\*.*\\*")
+  ))
 
 
 (defun disable-y-or-n-p (orig-fun &rest args)
