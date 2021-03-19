@@ -18,10 +18,9 @@
           ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
   (:map nswbuff-override-map
 	("b" . nswbuff-kill-this-buffer))
-  :config (setq nswbuff-buffer-list-function #'nswbuff-projectile-buffer-list
-                nswbuff-display-intermediate-buffers t
+  :config (setq nswbuff-display-intermediate-buffers t
                 nswbuff-status-window-layout 'minibuffer
-                ;nswbuff-exclude-buffer-regexps '("^ .*" "^\\*.*\\*")
+                nswbuff-exclude-buffer-regexps '("^ .*" "^\\*.*\\*")
   ))
 
 
