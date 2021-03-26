@@ -36,3 +36,6 @@
   :config
   (super-save-mode +1))
 (use-package! realgud-ipdb)
+(fset 'breakpoint
+   (kmacro-lambda-form [?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
+(define-key global-map (kbd "<f8>") 'breakpoint)
