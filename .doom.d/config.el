@@ -38,3 +38,10 @@
 (fset 'breakpoint
    (kmacro-lambda-form [?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
 (define-key global-map (kbd "<f8>") 'breakpoint)
+(setq frame-title-format
+    '(""
+      "%b"
+      (:eval
+       (let ((project-name (projectile-project-name)))
+         (unless (string= "-" project-name)
+           (format " in [%s]" project-name))))))
