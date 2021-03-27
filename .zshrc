@@ -113,3 +113,4 @@ alias us-keyboard="gsettings set org.gnome.desktop.input-sources sources \"[('xk
 
 alias start-vpn="openvpn3-autoload --directory ~/Documents/openvpn3/autoload"
 alias stop-vpn="~/Documents/openvpn3/stop-vpn.sh"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
