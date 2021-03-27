@@ -30,8 +30,7 @@
 
 (advice-add 'ediff-quit :around #'disable-y-or-n-p)
 (setq magit-ediff-dwim-show-on-hunks t)
-
-(load-theme 'doom-monokai-classic t)
+(load-theme 'manoj-dark t)
 (use-package! super-save
   :config
   (super-save-mode +1))
