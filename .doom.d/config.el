@@ -12,7 +12,6 @@
 (setq helm-candidate-number-limit 300)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-
 (use-package! nswbuff                    ; Quick switching between buffers
   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
           ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
@@ -30,7 +29,17 @@
 
 (advice-add 'ediff-quit :around #'disable-y-or-n-p)
 (setq magit-ediff-dwim-show-on-hunks t)
-(load-theme 'manoj-dark t)
+;; (setq zenburn-scale-org-headlines t)
+;; (setq zenburn-override-colors-alist
+;;       '(
+;;         ;; ("zenburn-bg+3" . "#425af5")) ;; line nos
+;;         ("zenburn-bg-08" . "#000000") ;; background
+;;         ;; ("zenburn-bg" . "#425af5")) ;;current line
+;;         ("zenburn-bg-1"     . "#5eb1b5")) ;;mark highlighter
+;;       )
+;; (load-theme 'zenburn t)
+(setq custom-safe-themes t)
+(color-theme-sanityinc-tomorrow-bright)
 (use-package! super-save
   :config
   (super-save-mode +1))

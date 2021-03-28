@@ -55,3 +55,5 @@
 (package! visual-regexp-steroids)
 (package! super-save)
 (package! realgud-ipdb)
+;; (package! zenburn-theme)
+(package! color-theme-sanityinc-tomorrow)
