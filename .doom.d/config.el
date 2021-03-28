@@ -13,6 +13,7 @@
 (setq helm-candidate-number-limit 300)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+(define-key magit-section-mode-map (kbd "<C-tab>") nil) ;; conflicts with nswbuff
 (use-package! nswbuff                    ; Quick switching between buffers
   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
           ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
