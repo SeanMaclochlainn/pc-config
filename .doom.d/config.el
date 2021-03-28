@@ -47,6 +47,11 @@
 (fset 'breakpoint
    (kmacro-lambda-form [?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
 (define-key global-map (kbd "<f8>") 'breakpoint)
+(fset 'clear-vterm
+   (kmacro-lambda-form [escape ?i ?c ?l ?e ?a ?r return ?\C-c ?\C-l? ?\C-c ?\C-l] 0 "%d"))
+(map! :after vterm
+      :map vterm-mode-map
+      :ni "<f7>" #'clear-vterm)
 (setq frame-title-format
     '(""
       "%b"
