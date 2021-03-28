@@ -67,3 +67,5 @@
 (use-package! vterm
   :config
   (set-popup-rule! "^vterm" :ignore t))
+(map! :leader
+      :desc "terminal vterm" "o t" #'vterm)
