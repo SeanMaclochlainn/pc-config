@@ -29,6 +29,7 @@
 
 (advice-add 'ediff-quit :around #'disable-y-or-n-p)
 (setq magit-ediff-dwim-show-on-hunks t)
+(setq +evil-want-o/O-to-continue-comments nil)
 ;; (setq zenburn-scale-org-headlines t)
 ;; (setq zenburn-override-colors-alist
 ;;       '(
