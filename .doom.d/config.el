@@ -13,7 +13,10 @@
 (setq helm-candidate-number-limit 300)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-(define-key magit-section-mode-map (kbd "<C-tab>") nil) ;; conflicts with nswbuff
+(use-package! magit
+  :config
+  (define-key magit-section-mode-map (kbd "<C-tab>") nil) ;; conflicts with nswbuff
+)
 (use-package! nswbuff                    ; Quick switching between buffers
   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
           ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
@@ -23,7 +26,6 @@
                 nswbuff-status-window-layout 'minibuffer
                 nswbuff-exclude-buffer-regexps '("^ .*" "^\\*.*\\*" ".*magit.*")
   ))
-
 
 (defun disable-y-or-n-p (orig-fun &rest args)
   (cl-letf (((symbol-function 'y-or-n-p) (lambda (prompt) t)))
@@ -71,3 +73,4 @@
   (set-popup-rule! "^vterm" :ignore t))
 (map! :leader
       :desc "terminal vterm" "o t" #'vterm)
+
