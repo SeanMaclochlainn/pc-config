@@ -24,7 +24,8 @@
 	("b" . nswbuff-kill-this-buffer))
   :config (setq nswbuff-display-intermediate-buffers t
                 nswbuff-status-window-layout 'minibuffer
-                nswbuff-exclude-buffer-regexps '("^ .*" "^\\*.*\\*" ".*magit.*")
+                nswbuff-exclude-buffer-regexps '("^ .*" "^\\*.*\\*" ".*magit.*" "placeholder-file")
+                nswbuff-buffer-list-function 'nswbuff-projectile-buffer-list
   ))
 
 (defun disable-y-or-n-p (orig-fun &rest args)
