@@ -84,11 +84,31 @@
   (set-popup-rule! "^vterm" :ignore t))
 
 
-
 (map! :leader
       :desc "terminal vterm" "o t" #'vterm)
-
 
 (map! (:map evil-window-map
  "s"       #'+evil/window-split-and-follow
  "v"       #'+evil/window-vsplit-and-follow))
+
+(map! :ie "C-h" #'backward-delete-char-untabify)
+(map! (:map (minibuffer-local-map
+             minibuffer-local-ns-map
+             minibuffer-local-completion-map
+             minibuffer-local-must-match-map
+             minibuffer-local-isearch-map
+             read-expression-map)
+        "C-h" #'backward-delete-char-untabify)
+
+      (:after evil
+        :map evil-ex-completion-map
+        "C-h" #'backward-delete-char-untabify)
+
+     (:after ivy
+        :map ivy-minibuffer-map
+        "C-h" #'backward-delete-char-untabify)
+
+     (:after evil-org
+        :map evil-org-mode-map
+        :i "C-h" #'backward-delete-char-untabify)
+)
