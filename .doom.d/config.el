@@ -12,6 +12,7 @@
 (define-key global-map (kbd "C-x C-j") 'evilnc-comment-and-kill-ring-save)
 (setq helm-candidate-number-limit 300)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(setq org-startup-folded t)
 
 (use-package! magit
   :config
