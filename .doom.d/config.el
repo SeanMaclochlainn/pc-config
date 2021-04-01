@@ -50,9 +50,15 @@
   :config
   (super-save-mode +1))
 (use-package! realgud-ipdb)
+
+
+(fset 'breakpoint-below
+   (kmacro-lambda-form [escape ?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
+(define-key global-map (kbd "S-<f8>") 'breakpoint-below)
 (fset 'breakpoint
-   (kmacro-lambda-form [?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
+   (kmacro-lambda-form [escape ?i ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
 (define-key global-map (kbd "<f8>") 'breakpoint)
+
 (fset 'clear-vterm
    (kmacro-lambda-form [escape ?i ?\C-a ?\C-k ?c ?l ?e ?a ?r return ?\C-c ?\C-l? ?\C-c ?\C-l] 0 "%d"))
 (map! :after vterm
