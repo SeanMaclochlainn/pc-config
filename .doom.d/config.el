@@ -35,17 +35,17 @@
 (advice-add 'ediff-quit :around #'disable-y-or-n-p)
 (setq magit-ediff-dwim-show-on-hunks t)
 (setq +evil-want-o/O-to-continue-comments nil)
-;; (setq zenburn-scale-org-headlines t)
-;; (setq zenburn-override-colors-alist
-;;       '(
+
+(setq zenburn-scale-org-headlines t)
+(setq zenburn-override-colors-alist
+      '(
 ;;         ;; ("zenburn-bg+3" . "#425af5")) ;; line nos
 ;;         ("zenburn-bg-08" . "#000000") ;; background
 ;;         ;; ("zenburn-bg" . "#425af5")) ;;current line
-;;         ("zenburn-bg-1"     . "#5eb1b5")) ;;mark highlighter
-;;       )
-;; (load-theme 'zenburn t)
-(setq custom-safe-themes t)
-(color-theme-sanityinc-tomorrow-bright)
+        ("zenburn-bg-1"     . "#0739b8")) ;;mark highlighter
+      )
+(load-theme 'zenburn t)
+
 (use-package! super-save
   :config
   (super-save-mode +1))
