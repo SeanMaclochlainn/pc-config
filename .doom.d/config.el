@@ -17,6 +17,7 @@
   :config
   (define-key magit-section-mode-map (kbd "<C-tab>") nil) ;; conflicts with nswbuff
 )
+
 (use-package! nswbuff                    ; Quick switching between buffers
   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
           ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
@@ -49,8 +50,8 @@
 (use-package! super-save
   :config
   (super-save-mode +1))
-(use-package! realgud-ipdb)
 
+(use-package! realgud-ipdb)
 
 (fset 'breakpoint-below
    (kmacro-lambda-form [escape ?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
@@ -64,6 +65,7 @@
 (map! :after vterm
       :map vterm-mode-map
       :ni "<f7>" #'clear-vterm)
+
 (setq frame-title-format
     '(""
       "%b"
@@ -71,13 +73,22 @@
        (let ((project-name (projectile-project-name)))
          (unless (string= "-" project-name)
            (format " in [%s]" project-name))))))
+
 (with-eval-after-load 'evil
     (defalias #'forward-evil-word #'forward-evil-symbol)
     ;; make evil-search-word look for symbol rather than word boundaries
     (setq-default evil-symbol-word-search t))
+
 (use-package! vterm
   :config
   (set-popup-rule! "^vterm" :ignore t))
+
+
+
 (map! :leader
       :desc "terminal vterm" "o t" #'vterm)
 
+
+(map! (:map evil-window-map
+ "s"       #'+evil/window-split-and-follow
+ "v"       #'+evil/window-vsplit-and-follow))
