@@ -108,8 +108,7 @@
      (:after ivy
         :map ivy-minibuffer-map
         "C-h" #'backward-delete-char-untabify)
-
-     (:after evil-org
-        :map evil-org-mode-map
-        :i "C-h" #'backward-delete-char-untabify)
 )
+(map! :after evil-org
+:map evil-org-mode-map
+:i "C-h" #'backward-delete-char-untabify)
