@@ -138,6 +138,9 @@
 (map! :after evil-org
 :map evil-org-mode-map
 :i "C-h" #'backward-delete-char-untabify)
+(map! :after evil-org
+:map company-active-map
+"C-h" #'backward-delete-char-untabify)
 
 ;; (use-package! eaf
 ;;   :load-path "~/.emacs.d/site-lisp/emacs-application-framework" ; Set to "/usr/share/emacs/site-lisp/eaf" if installed from AUR
