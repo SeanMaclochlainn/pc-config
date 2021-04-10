@@ -55,6 +55,7 @@
 (package! visual-regexp-steroids)
 (package! super-save)
 (package! realgud-ipdb)
+(package! gruvbox-theme)
 ;; (package! zenburn-theme)
 ;; (package! eaf)
 ;; (package! epc)

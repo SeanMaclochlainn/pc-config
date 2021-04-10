@@ -15,6 +15,8 @@
 ;; (add-to-list 'default-frame-alist '(background-color . "LightCyan3"))
 ;; (add-to-list 'default-frame-alist '(cursor-color . "palegoldenrod"))
 (setq org-startup-folded t)
+;; (setq doom-theme 'default)
+(setq doom-theme 'gruvbox-dark-medium)
 ;; (disable-theme)
 (use-package! magit
   :config
