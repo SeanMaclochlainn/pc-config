@@ -117,3 +117,4 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
 alias enable-swap-escape="gsettings set org.gnome.desktop.input-sources xkb-options \"['caps:swapescape']\""
 alias disable-swap-escape="gsettings set org.gnome.desktop.input-sources xkb-options \"['']\""
+setopt share_history
