@@ -105,9 +105,6 @@ fi
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-alias disable-keyboard="xinput float 'AT Translated Set 2 keyboard'"
-alias enable-keyboard="xinput reattach 'AT Translated Set 2 keyboard' 'Virtual core keyboard'"
-
 alias dvorak-keyboard="gsettings set org.gnome.desktop.input-sources sources \"[('xkb', 'us+dvorak'), ('xkb', 'us'), ('xkb', 'gb')]\""
 alias us-keyboard="gsettings set org.gnome.desktop.input-sources sources \"[('xkb', 'us'), ('xkb', 'us+dvorak'), ('xkb', 'gb')]\""
 
