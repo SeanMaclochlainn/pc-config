@@ -57,9 +57,14 @@
 (package! realgud-ipdb)
 (package! gruvbox-theme)
 ;; (package! zenburn-theme)
+
+;; EAF
 ;; (package! eaf)
 ;; (package! epc)
 ;; (package! ctable)
 ;; (package! deferred)
 ;; (package! s)
+
+
 ;; (package! solarized-theme)
+(package! mozc)

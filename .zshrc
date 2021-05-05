@@ -116,3 +116,7 @@ alias enable-swap-escape="gsettings set org.gnome.desktop.input-sources xkb-opti
 alias disable-swap-escape="gsettings set org.gnome.desktop.input-sources xkb-options \"['']\""
 setopt share_history
 bindkey '\ef' emacs-forward-word
+# Japanese input
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx

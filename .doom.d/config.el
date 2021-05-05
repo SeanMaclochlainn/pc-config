@@ -144,6 +144,7 @@
 :map company-active-map
 "C-h" #'backward-delete-char-untabify)
 
+;; EAF
 ;; (use-package! eaf
 ;;   :load-path "~/.emacs.d/site-lisp/emacs-application-framework" ; Set to "/usr/share/emacs/site-lisp/eaf" if installed from AUR
 ;;   :init
@@ -176,3 +177,24 @@
 ;;   (disable-theme theme))
 ;; (disable-theme 'doom-one)
 ;; (disable-theme 'solaire-swap-bg-theme)
+
+
+(setq japanese-mode-enabled nil)
+(defun toggle-japanese-mode ()
+    (interactive)
+    (if japanese-mode-enabled
+        (progn
+          (evil-exit-emacs-state)
+          (mozc-mode)
+          (message "japanese mode disabled")
+          (setq japanese-mode-enabled nil)
+          )
+      (progn
+        (evil-emacs-state)
+        (mozc-mode)
+        (setq japanese-mode-enabled t)
+        (message "japanese mode enabled")
+        )
+     )
+)
+(define-key global-map (kbd "C-c l") 'toggle-japanese-mode)
