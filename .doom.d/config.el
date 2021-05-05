@@ -144,6 +144,9 @@
 :map company-active-map
 "C-h" #'backward-delete-char-untabify)
 
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\venv\\'"))
+
 ;; EAF
 ;; (use-package! eaf
 ;;   :load-path "~/.emacs.d/site-lisp/emacs-application-framework" ; Set to "/usr/share/emacs/site-lisp/eaf" if installed from AUR
