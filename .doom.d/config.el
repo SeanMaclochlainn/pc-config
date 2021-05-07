@@ -201,3 +201,19 @@
      )
 )
 (define-key global-map (kbd "C-c l") 'toggle-japanese-mode)
+
+(add-hook 'vterm-copy-mode-hook
+            (lambda ()
+
+                (if vterm-copy-mode
+                        (progn
+                        (set-background-color "Grey31")
+                        (message "copy mode enabled")
+                        )
+                (progn
+                        (set-background-color "#282828")
+                        (message "copy mode disabled")
+                        )
+                )
+                )
+            )
