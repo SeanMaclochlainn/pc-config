@@ -183,4 +183,8 @@
 (define-key global-map (kbd "S-<right>") 'windmove-right)
 (define-key global-map (kbd "S-<up>") 'windmove-up)
 (define-key global-map (kbd "S-<down>") 'windmove-down)
-(define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
+
+
+(use-package! treemacs
+  :config
+  (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action))
