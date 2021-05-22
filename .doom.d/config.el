@@ -187,4 +187,5 @@
 
 (use-package! treemacs
   :config
+  (treemacs-follow-mode 1)
   (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action))
