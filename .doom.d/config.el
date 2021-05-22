@@ -9,7 +9,7 @@
 ;; to use visual-regexp-steroids's isearch instead of the built-in regexp isearch, also include the following lines:
 (define-key global-map (kbd "C-M-r") 'vr/isearch-backward) ;; C-M-r
 (define-key global-map (kbd "C-M-s") 'vr/isearch-forward) ;; C-M-s
-(define-key global-map (kbd "C-x C-j") 'evilnc-comment-and-kill-ring-save)
+(define-key global-map (kbd "C-c C") 'evilnc-comment-and-kill-ring-save)
 (setq helm-candidate-number-limit 300)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;; (add-to-list 'default-frame-alist '(background-color . "LightCyan3"))
@@ -217,3 +217,8 @@
                 )
                 )
             )
+
+(define-key global-map (kbd "S-<left>") 'windmove-left)
+(define-key global-map (kbd "S-<right>") 'windmove-right)
+(define-key global-map (kbd "S-<up>") 'windmove-up)
+(define-key global-map (kbd "S-<down>") 'windmove-down)
