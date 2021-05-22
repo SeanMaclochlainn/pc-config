@@ -12,12 +12,8 @@
 (define-key global-map (kbd "C-c C") 'evilnc-comment-and-kill-ring-save)
 (setq helm-candidate-number-limit 300)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-;; (add-to-list 'default-frame-alist '(background-color . "LightCyan3"))
-;; (add-to-list 'default-frame-alist '(cursor-color . "palegoldenrod"))
 (setq org-startup-folded t)
-;; (setq doom-theme 'default)
 (setq doom-theme 'gruvbox-dark-medium)
-;; (disable-theme)
 (use-package! magit
   :config
   (define-key magit-section-mode-map (kbd "<C-tab>") nil) ;; conflicts with nswbuff
@@ -41,41 +37,7 @@
 (advice-add 'ediff-quit :around #'disable-y-or-n-p)
 (setq magit-ediff-dwim-show-on-hunks t)
 (setq +evil-want-o/O-to-continue-comments nil)
-;; (add-hook 'after-init-hook
-;;           (lambda () (run-with-timer 5 nil #'set-cursor-color "SystemRedColor")))
-;; (setq zenburn-scale-org-headlines t)
-;; (disable-theme 'doom-one)
-;; (setq zenburn-override-colors-alist
-;;       '(
-;; ;;         ;; ("zenburn-bg+3" . "#425af5")) ;; line nos
-;; ;;         ("zenburn-bg-08" . "#000000") ;; background
-;; ;;         ;; ("zenburn-bg" . "#425af5")) ;;current line
-;;         ("zenburn-bg-1"     . "#0739b8")) ;;mark highlighter
-;;       )
-;; (load-theme 'zenburn t)
-;; (load-theme 'solarized-light t)
-;; (load-theme 'manoj-dark)
-;; (set-face-attribute 'hl-line nil :inherit nil :background "gray6")
 
-;; (set-face-attribute 'hl-line nil)
-;; (load-theme 'dichromacy)
-
-;; (set-face-attribute 'hl-line nil :inherit nil)
-
-;; (set-face-attribute 'hl-line nil :inherit nil :background "gray6")
-;; (global-hl-line-mode 1)
-
-;; (custom-set-faces!
-;;   '(hl-line nil :inherit nil :background "gray6")
-;; )
-
-;; (global-hl-line-mode 1)
-;; (set-face-attribute 'highlight nil :background "#3e4446" :foreground 'unspecified)
-
-;; (set-face-attribute 'region nil :background "#8fc8db" :foreground 'unspecified)
-;; (set-cursor-color "#ffffff")
-;; (set-face-attribute 'mouse nil :background "#d9cc59" :foreground 'unspecified)
-;; (load-theme "default")
 (use-package! super-save
   :config
   (super-save-mode +1))
