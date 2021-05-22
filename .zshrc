@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+export PATH=$HOME/.local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/$USER/.oh-my-zsh"
 
@@ -120,3 +122,13 @@ bindkey '\ef' emacs-forward-word
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export GTK_IM_MODULE=fcitx
+export http_proxy="http://localhost:8080/"
+export ftp_proxy="ftp://localhost:8080/"
+export rsync_proxy="rsync://localhost:8080/"
+export no_proxy="localhost,127.0.0.1,192.168.1.1,::1,*.local"
+export HTTP_PROXY="http://localhost:8080/"
+export FTP_PROXY="ftp://localhost:8080/"
+export RSYNC_PROXY="rsync://localhost:8080/"
+export NO_PROXY="localhost,127.0.0.1,192.168.1.1,::1,*.local"
+export https_proxy="http://localhost:8080/"
+export HTTPS_PROXY="http://localhost:8080/"
