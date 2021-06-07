@@ -66,14 +66,18 @@
            (format " in [%s]" project-name))))))
 
 (with-eval-after-load 'evil
-    (defalias #'forward-evil-word #'forward-evil-symbol)
+    ;; (defalias #'forward-evil-word #'forward-evil-symbol)
     ;; make evil-search-word look for symbol rather than word boundaries
-    (setq-default evil-symbol-word-search t))
+    ;; (setq-default evil-symbol-word-search t)
+    (setq evil-want-fine-undo t))
 
 (use-package! vterm
   :config
   (set-popup-rule! "^vterm" :ignore t))
 
+(use-package! treemacs
+  :config
+  (setq treemacs-follow-mode t))
 
 (map! :leader
       :desc "terminal vterm" "o t" #'vterm)
@@ -105,6 +109,7 @@
 (map! :after evil-org
 :map company-active-map
 "C-h" #'backward-delete-char-untabify)
+(map! :n "C-t" #'evil-scroll-line-down)
 
 (with-eval-after-load 'lsp-mode
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\venv\\'"))
@@ -179,13 +184,48 @@
                 )
                 )
             )
+
+(define-key global-map (kbd "C-c c") 'comment-line)
+(define-key global-map (kbd "C-c d") 'delete-region)
+(global-unset-key (kbd "M-t"))
 (define-key global-map (kbd "S-<left>") 'windmove-left)
 (define-key global-map (kbd "S-<right>") 'windmove-right)
 (define-key global-map (kbd "S-<up>") 'windmove-up)
 (define-key global-map (kbd "S-<down>") 'windmove-down)
 
+(map! :after evil-org
+:map evil-org-mode-map
+:n
+"S-<left>" #'windmove-left
+"S-<right>" #'windmove-right
+"S-<up>" #'windmove-up
+"S-<down>" #'windmove-down)
+
+
+(defun copy-full-path-to-kill-ring ()
+  "copy buffer's full path to kill ring"
+  (interactive)
+  (when buffer-file-name
+    (kill-new (file-truename buffer-file-name))))
+(defun copy-python-breakpoint-to-kill-ring()
+  "copy buffer's full path to kill ring"
+  (interactive)
+  (when buffer-file-name
+    (kill-new (concat "b " (file-truename buffer-file-name) ":" (replace-regexp-in-string "Line " "" (what-line))))))
+
+(map! :v "$" #'evil-last-non-blank)
 
 (use-package! treemacs
   :config
   (treemacs-follow-mode 1)
   (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action))
+
+(defun evil-scroll-down-fixed ()
+  (interactive)
+  (evil-scroll-down 4))
+(defun evil-scroll-up-fixed ()
+  (interactive)
+  (evil-scroll-up 4))
+
+(map! :nve "C-d" #'evil-scroll-down-fixed)
+(map! :nve "C-u" #'evil-scroll-up-fixed)
