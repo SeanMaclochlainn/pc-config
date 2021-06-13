@@ -66,6 +66,9 @@
 (map! :after vterm
       :map vterm-mode-map
       :ni "<f7>" #'clear-vterm)
+(map! :after vterm
+      :map vterm-mode-map
+      :i "C-h" #'vterm-send-C-h)
 
 (setq frame-title-format
       '(""
