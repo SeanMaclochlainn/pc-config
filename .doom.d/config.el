@@ -17,7 +17,7 @@
 (use-package! magit
   :config
   (define-key magit-section-mode-map (kbd "<C-tab>") nil) ;; conflicts with nswbuff
-)
+  )
 
 (with-eval-after-load 'lsp-mode
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.env_python3.8\\'"))
@@ -29,16 +29,16 @@
 (use-package! nswbuff                    ; Quick switching between buffers
   :bind* (("<C-end>"           . nswbuff-switch-to-next-buffer)
           ("<C-home>" . nswbuff-switch-to-previous-buffer))
-;; (use-package! nswbuff                    ; Quick switching between buffers
-;;   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
-;;           ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
+  ;; (use-package! nswbuff                    ; Quick switching between buffers
+  ;;   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
+  ;;           ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
   (:map nswbuff-override-map
-	("b" . nswbuff-kill-this-buffer))
+   ("b" . nswbuff-kill-this-buffer))
   :config (setq nswbuff-display-intermediate-buffers t
                 nswbuff-status-window-layout 'minibuffer
                 nswbuff-exclude-buffer-regexps '("^ .*" "^\\*.*\\*" ".*magit.*" "placeholder-file")
                 nswbuff-buffer-list-function 'nswbuff-projectile-buffer-list
-  ))
+                ))
 
 (defun disable-y-or-n-p (orig-fun &rest args)
   (cl-letf (((symbol-function 'y-or-n-p) (lambda (prompt) t)))
@@ -55,31 +55,31 @@
 (use-package! realgud-ipdb)
 
 (fset 'breakpoint-below
-   (kmacro-lambda-form [escape ?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
+      (kmacro-lambda-form [escape ?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
 ;; (define-key global-map (kbd "S-<f8>") 'breakpoint-below)
 (fset 'breakpoint
-   (kmacro-lambda-form [escape ?i ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
+      (kmacro-lambda-form [escape ?i ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
 (define-key global-map (kbd "<f8>") 'breakpoint-below)
 
 (fset 'clear-vterm
-   (kmacro-lambda-form [escape ?i ?\C-a ?\C-k ?c ?l ?e ?a ?r return ?\C-c ?\C-l? ?\C-c ?\C-l] 0 "%d"))
+      (kmacro-lambda-form [escape ?i ?\C-a ?\C-k ?c ?l ?e ?a ?r return ?\C-c ?\C-l? ?\C-c ?\C-l] 0 "%d"))
 (map! :after vterm
       :map vterm-mode-map
       :ni "<f7>" #'clear-vterm)
 
 (setq frame-title-format
-    '(""
-      "%b"
-      (:eval
-       (let ((project-name (projectile-project-name)))
-         (unless (string= "-" project-name)
-           (format " in [%s]" project-name))))))
+      '(""
+        "%b"
+        (:eval
+         (let ((project-name (projectile-project-name)))
+           (unless (string= "-" project-name)
+             (format " in [%s]" project-name))))))
 
 (with-eval-after-load 'evil
-    ;; (defalias #'forward-evil-word #'forward-evil-symbol)
-    ;; make evil-search-word look for symbol rather than word boundaries
-    ;; (setq-default evil-symbol-word-search t)
-    (setq evil-want-fine-undo t))
+  ;; (defalias #'forward-evil-word #'forward-evil-symbol)
+  ;; make evil-search-word look for symbol rather than word boundaries
+  ;; (setq-default evil-symbol-word-search t)
+  (setq evil-want-fine-undo t))
 
 (use-package! vterm
   :config
@@ -93,8 +93,8 @@
       :desc "terminal vterm" "o t" #'vterm)
 
 (map! (:map evil-window-map
- "s"       #'+evil/window-split-and-follow
- "v"       #'+evil/window-vsplit-and-follow))
+       "s"       #'+evil/window-split-and-follow
+       "v"       #'+evil/window-vsplit-and-follow))
 
 (map! :ie "C-h" #'backward-delete-char-untabify)
 (map! (:map (minibuffer-local-map
@@ -103,22 +103,22 @@
              minibuffer-local-must-match-map
              minibuffer-local-isearch-map
              read-expression-map)
-        "C-h" #'backward-delete-char-untabify)
+       "C-h" #'backward-delete-char-untabify)
 
       (:after evil
-        :map evil-ex-completion-map
-        "C-h" #'backward-delete-char-untabify)
+       :map evil-ex-completion-map
+       "C-h" #'backward-delete-char-untabify)
 
-     (:after ivy
-        :map ivy-minibuffer-map
-        "C-h" #'backward-delete-char-untabify)
-)
+      (:after ivy
+       :map ivy-minibuffer-map
+       "C-h" #'backward-delete-char-untabify)
+      )
 (map! :after evil-org
-:map evil-org-mode-map
-:i "C-h" #'backward-delete-char-untabify)
+      :map evil-org-mode-map
+      :i "C-h" #'backward-delete-char-untabify)
 (map! :after evil-org
-:map company-active-map
-"C-h" #'backward-delete-char-untabify)
+      :map company-active-map
+      "C-h" #'backward-delete-char-untabify)
 (map! :n "C-t" #'evil-scroll-line-down)
 ;; EAF
 ;; (use-package! eaf
@@ -164,7 +164,7 @@
 (defun wsl-paste ()
   (interactive)
   (let ((clipboard
-     (shell-command-to-string "powershell.exe -command 'Get-Clipboard' 2> /dev/null")))
+         (shell-command-to-string "powershell.exe -command 'Get-Clipboard' 2> /dev/null")))
     (setq clipboard (replace-regexp-in-string "\r" "" clipboard)) ; Remove Windows ^M characters
     (setq clipboard (substring clipboard 0 -1)) ; Remove newline added by Powershell
     (insert clipboard)))
@@ -203,20 +203,20 @@
       ))
 
 (add-hook 'vterm-copy-mode-hook
-            (lambda ()
+          (lambda ()
 
-                (if vterm-copy-mode
-                        (progn
-                        (set-background-color "Grey31")
-                        (message "copy mode enabled")
-                        )
+            (if vterm-copy-mode
                 (progn
-                        (set-background-color "#282828")
-                        (message "copy mode disabled")
-                        )
+                  (set-background-color "Grey31")
+                  (message "copy mode enabled")
+                  )
+              (progn
+                (set-background-color "#282828")
+                (message "copy mode disabled")
                 )
-                )
+              )
             )
+          )
 
 (define-key global-map (kbd "C-c c") 'comment-line)
 (define-key global-map (kbd "C-c d") 'delete-region)
@@ -227,12 +227,12 @@
 (define-key global-map (kbd "S-<down>") 'windmove-down)
 
 (map! :after evil-org
-:map evil-org-mode-map
-:n
-"S-<left>" #'windmove-left
-"S-<right>" #'windmove-right
-"S-<up>" #'windmove-up
-"S-<down>" #'windmove-down)
+      :map evil-org-mode-map
+      :n
+      "S-<left>" #'windmove-left
+      "S-<right>" #'windmove-right
+      "S-<up>" #'windmove-up
+      "S-<down>" #'windmove-down)
 
 
 
@@ -316,50 +316,23 @@
 (map! :i "C-c v" #'evil-paste-after)
 
 
-;; (defun python-mode-enter ()
-;;   (setq-default flycheck-disabled-checkers '(lsp)))
-
-;; (defun python-mode-exit ()
-;;   (setq-default flycheck-disabled-checkers nil))
-
-;; (add-hook 'python-mode-hook 'python-mode-enter)
-
-;; (remove-hook 'python-mode-hook 'python-mode-exit)
-
-
-;; (defun python-mode-enter ()
-;;   (flycheck-select-checker 'python-mypy))
 (defun python-mode-enter ()
   (flycheck-select-checker 'python-flake8))
 
-
 (add-hook 'python-mode-hook 'python-mode-enter)
 
-(remove-hook 'python-mode-hook 'python-mode-exit)
-
-;; (global-flycheck-mode 1)
-;; (with-eval-after-load 'flycheck
-;;   (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
-;;   )
-
-;; (setq flycheck-checker 'mypy)
-
-;; (flycheck-select-checker 'python-mypy)
 
 (defun remove-python-project-breakpoints ()
   (interactive)
-  (message "remove-bps")
-  (message "test4")
-  (message "test %s" (projectile-project-root))
   (shell-command (format "%s %s" "~/utility-scripts/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
   )
 
 
 (use-package! python-pytest
   :config
-        (defun copy-python-test-path ()
-        (interactive)
-                (kill-new (replace-regexp-in-string (projectile-project-root) "" (concat "pytest "(buffer-file-name) "::" (python-pytest--current-defun))))
-                (message "Test path copied to kill ring")
-        )
+  (defun copy-python-test-path ()
+    (interactive)
+    (kill-new (replace-regexp-in-string (projectile-project-root) "" (concat "pytest "(buffer-file-name) "::" (python-pytest--current-defun))))
+    (message "Test path copied to kill ring")
+    )
   )
