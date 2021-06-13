@@ -205,22 +205,6 @@
       (define-key global-map (kbd "C-c l") 'toggle-japanese-mode)
       ))
 
-(add-hook 'vterm-copy-mode-hook
-          (lambda ()
-
-            (if vterm-copy-mode
-                (progn
-                  (set-background-color "Grey31")
-                  (message "copy mode enabled")
-                  )
-              (progn
-                (set-background-color "#282828")
-                (message "copy mode disabled")
-                )
-              )
-            )
-          )
-
 (define-key global-map (kbd "C-c c") 'comment-line)
 (define-key global-map (kbd "C-c d") 'delete-region)
 (global-unset-key (kbd "M-t"))
@@ -339,3 +323,24 @@
     (message "Test path copied to kill ring")
     )
   )
+
+
+(add-hook 'buffer-list-update-hook 'update-vterm-color)
+
+(defun update-vterm-color ()
+  (if (and (eq major-mode 'vterm-mode) (eq vterm-copy-mode t))
+      (set-background-color "black")
+    (set-background-color "#282828")))
+
+(add-hook 'vterm-copy-mode-hook
+          (lambda ()
+            (if vterm-copy-mode
+                (progn
+                  (set-background-color "black")
+                  )
+              (progn
+                (set-background-color "#282828")
+                )
+              )
+            )
+          )
