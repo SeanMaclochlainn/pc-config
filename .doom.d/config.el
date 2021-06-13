@@ -19,9 +19,19 @@
   (define-key magit-section-mode-map (kbd "<C-tab>") nil) ;; conflicts with nswbuff
 )
 
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.env_python3.8\\'"))
+
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\venv\\'"))
+
+
 (use-package! nswbuff                    ; Quick switching between buffers
-  :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
-          ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
+  :bind* (("<C-end>"           . nswbuff-switch-to-next-buffer)
+          ("<C-home>" . nswbuff-switch-to-previous-buffer))
+;; (use-package! nswbuff                    ; Quick switching between buffers
+;;   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
+;;           ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
   (:map nswbuff-override-map
 	("b" . nswbuff-kill-this-buffer))
   :config (setq nswbuff-display-intermediate-buffers t
@@ -46,10 +56,10 @@
 
 (fset 'breakpoint-below
    (kmacro-lambda-form [escape ?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
-(define-key global-map (kbd "S-<f8>") 'breakpoint-below)
+;; (define-key global-map (kbd "S-<f8>") 'breakpoint-below)
 (fset 'breakpoint
    (kmacro-lambda-form [escape ?i ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
-(define-key global-map (kbd "<f8>") 'breakpoint)
+(define-key global-map (kbd "<f8>") 'breakpoint-below)
 
 (fset 'clear-vterm
    (kmacro-lambda-form [escape ?i ?\C-a ?\C-k ?c ?l ?e ?a ?r return ?\C-c ?\C-l? ?\C-c ?\C-l] 0 "%d"))
@@ -110,10 +120,6 @@
 :map company-active-map
 "C-h" #'backward-delete-char-untabify)
 (map! :n "C-t" #'evil-scroll-line-down)
-
-(with-eval-after-load 'lsp-mode
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\venv\\'"))
-
 ;; EAF
 ;; (use-package! eaf
 ;;   :load-path "~/.emacs.d/site-lisp/emacs-application-framework" ; Set to "/usr/share/emacs/site-lisp/eaf" if installed from AUR
@@ -149,25 +155,52 @@
 ;; (disable-theme 'solaire-swap-bg-theme)
 
 
-(setq japanese-mode-enabled nil)
-(defun toggle-japanese-mode ()
-    (interactive)
-    (if japanese-mode-enabled
-        (progn
-          (evil-exit-emacs-state)
-          (mozc-mode)
-          (message "japanese mode disabled")
-          (setq japanese-mode-enabled nil)
+(defun wsl-copy (start end)
+  (interactive "r")
+  (shell-command-on-region start end "clip.exe")
+  (deactivate-mark)
+  (evil-yank start end))
+
+(defun wsl-paste ()
+  (interactive)
+  (let ((clipboard
+     (shell-command-to-string "powershell.exe -command 'Get-Clipboard' 2> /dev/null")))
+    (setq clipboard (replace-regexp-in-string "\r" "" clipboard)) ; Remove Windows ^M characters
+    (setq clipboard (substring clipboard 0 -1)) ; Remove newline added by Powershell
+    (insert clipboard)))
+
+(defun wsl-delete (start end)
+  (interactive "r")
+  (shell-command-on-region start end "clip.exe")
+  (deactivate-mark)
+  (evil-delete start end))
+
+
+;; dd and yy not working with these
+;; (define-key evil-visual-state-map (kbd "d") 'wsl-delete)
+;; (define-key evil-normal-state-map (kbd "p") 'wsl-paste)
+(if (not (string= user-real-login-name "smcloughlin"))
+    (progn
+      (setq japanese-mode-enabled nil)
+      (defun toggle-japanese-mode ()
+        (interactive)
+        (if japanese-mode-enabled
+            (progn
+              (evil-exit-emacs-state)
+              (mozc-mode)
+              (message "japanese mode disabled")
+              (setq japanese-mode-enabled nil)
+              )
+          (progn
+            (evil-emacs-state)
+            (mozc-mode)
+            (setq japanese-mode-enabled t)
+            (message "japanese mode enabled")
+            )
           )
-      (progn
-        (evil-emacs-state)
-        (mozc-mode)
-        (setq japanese-mode-enabled t)
-        (message "japanese mode enabled")
         )
-     )
-)
-(define-key global-map (kbd "C-c l") 'toggle-japanese-mode)
+      (define-key global-map (kbd "C-c l") 'toggle-japanese-mode)
+      ))
 
 (add-hook 'vterm-copy-mode-hook
             (lambda ()
@@ -202,6 +235,53 @@
 "S-<down>" #'windmove-down)
 
 
+
+;; (unless (display-graphic-p)
+;;         ;; activate mouse-based scrolling
+;;         (xterm-mouse-mode 1)
+;;         (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
+;;         (global-set-key (kbd "<mouse-5>") 'scroll-up-line)
+
+;;         (define-key evil-visual-state-map (kbd "y") 'wsl-copy)
+;;         (add-hook 'vterm-copy-mode-hook
+;;                 (lambda ()
+
+;;                         (if vterm-copy-mode
+;;                                 (progn
+;;                                 (set-background-color "Grey31")
+;;                                 (message "copy mode enabled")
+;;                                 )
+;;                         (progn
+;;                                 (set-background-color "#282828")
+;;                                 (message "copy mode disabled")
+;;                                 )
+;;                         )
+;;                         )
+;;                 )
+
+;;         (add-hook 'evil-insert-state-entry-hook
+;;                 (lambda ()
+;;                 (progn
+;;                 (set-background-color "Grey31")
+;;                 (message "entered insert mode")
+;;                 )))
+
+;;         (add-hook 'evil-insert-state-exit-hook
+;;                 (lambda ()
+;;                 (progn
+;;                 (set-background-color "#282828")
+;;                 (message "exited insert mode")
+;;                 )))
+;;   )
+(use-package! typescript-mode
+  :config(setq typescript-indent-level 2))
+
+(use-package! web-mode
+  :config(setq web-mode-code-indent-offset 2))
+
+(use-package! undo-tree
+  :config(setq web-mode-code-indent-offset 2))
+
 (defun copy-full-path-to-kill-ring ()
   "copy buffer's full path to kill ring"
   (interactive)
@@ -229,3 +309,57 @@
 
 (map! :nve "C-d" #'evil-scroll-down-fixed)
 (map! :nve "C-u" #'evil-scroll-up-fixed)
+
+(map! :nve "C-c b" #'copy-python-breakpoint-to-kill-ring)
+(map! :nve "C-c B" #'remove-python-project-breakpoints)
+(map! :nve "C-c t" #'copy-python-test-path)
+(map! :i "C-c v" #'evil-paste-after)
+
+
+;; (defun python-mode-enter ()
+;;   (setq-default flycheck-disabled-checkers '(lsp)))
+
+;; (defun python-mode-exit ()
+;;   (setq-default flycheck-disabled-checkers nil))
+
+;; (add-hook 'python-mode-hook 'python-mode-enter)
+
+;; (remove-hook 'python-mode-hook 'python-mode-exit)
+
+
+;; (defun python-mode-enter ()
+;;   (flycheck-select-checker 'python-mypy))
+(defun python-mode-enter ()
+  (flycheck-select-checker 'python-flake8))
+
+
+(add-hook 'python-mode-hook 'python-mode-enter)
+
+(remove-hook 'python-mode-hook 'python-mode-exit)
+
+;; (global-flycheck-mode 1)
+;; (with-eval-after-load 'flycheck
+;;   (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
+;;   )
+
+;; (setq flycheck-checker 'mypy)
+
+;; (flycheck-select-checker 'python-mypy)
+
+(defun remove-python-project-breakpoints ()
+  (interactive)
+  (message "remove-bps")
+  (message "test4")
+  (message "test %s" (projectile-project-root))
+  (shell-command (format "%s %s" "~/utility-scripts/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
+  )
+
+
+(use-package! python-pytest
+  :config
+        (defun copy-python-test-path ()
+        (interactive)
+                (kill-new (replace-regexp-in-string (projectile-project-root) "" (concat "pytest "(buffer-file-name) "::" (python-pytest--current-defun))))
+                (message "Test path copied to kill ring")
+        )
+  )
