@@ -67,4 +67,6 @@
 
 
 ;; (package! solarized-theme)
-(package! mozc)
+
+(if (not (string= user-real-login-name "smcloughlin"))
+    (package! mozc))
