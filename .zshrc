@@ -116,6 +116,11 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
 alias enable-swap-escape="gsettings set org.gnome.desktop.input-sources xkb-options \"['caps:swapescape']\""
 alias disable-swap-escape="gsettings set org.gnome.desktop.input-sources xkb-options \"['']\""
+alias mt="make test"
+alias mf="make fixup"
+alias ml="make lint"
+alias mfl="make fixup; make lint"
+alias mc="make commit"
 setopt share_history
 bindkey '\ef' emacs-forward-word
 # Japanese input
