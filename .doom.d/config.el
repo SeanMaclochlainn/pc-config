@@ -82,7 +82,8 @@
   ;; (defalias #'forward-evil-word #'forward-evil-symbol)
   ;; make evil-search-word look for symbol rather than word boundaries
   ;; (setq-default evil-symbol-word-search t)
-  (setq evil-want-fine-undo t))
+  (setq evil-want-fine-undo t)
+  (modify-syntax-entry ?_ "w"))
 
 (use-package! vterm
   :config
@@ -309,6 +310,10 @@
 (add-hook 'python-mode-hook 'python-mode-enter)
 
 
+(map! :after vterm
+      :map vterm-mode-map
+      :nvi "C-c B" #'remove-python-project-breakpoints)
+
 (defun remove-python-project-breakpoints ()
   (interactive)
   (shell-command (format "%s %s" "~/utility-scripts/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
@@ -325,13 +330,6 @@
   )
 
 
-(add-hook 'buffer-list-update-hook 'update-vterm-color)
-
-(defun update-vterm-color ()
-  (if (and (eq major-mode 'vterm-mode) (eq vterm-copy-mode t))
-      (set-background-color "black")
-    (set-background-color "#282828")))
-
 (add-hook 'vterm-copy-mode-hook
           (lambda ()
             (if vterm-copy-mode
@@ -344,3 +342,6 @@
               )
             )
           )
+
+(define-key! :keymaps +default-minibuffer-maps
+  "C-k" #'kill-line)
