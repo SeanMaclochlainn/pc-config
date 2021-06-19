@@ -117,23 +117,18 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 alias enable-swap-escape="gsettings set org.gnome.desktop.input-sources xkb-options \"['caps:swapescape']\""
 alias disable-swap-escape="gsettings set org.gnome.desktop.input-sources xkb-options \"['']\""
 alias mt="make test"
+alias mtv="py.test -vvv"
 alias mf="make fixup"
 alias ml="make lint"
 alias mfl="make fixup; make lint"
 alias mc="make commit"
 setopt share_history
 bindkey '\ef' emacs-forward-word
-# Japanese input
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-export GTK_IM_MODULE=fcitx
-export http_proxy="http://localhost:8080/"
-export ftp_proxy="ftp://localhost:8080/"
-export rsync_proxy="rsync://localhost:8080/"
-export no_proxy="localhost,127.0.0.1,192.168.1.1,::1,*.local"
-export HTTP_PROXY="http://localhost:8080/"
-export FTP_PROXY="ftp://localhost:8080/"
-export RSYNC_PROXY="rsync://localhost:8080/"
-export NO_PROXY="localhost,127.0.0.1,192.168.1.1,::1,*.local"
-export https_proxy="http://localhost:8080/"
-export HTTPS_PROXY="http://localhost:8080/"
+
+#seems to slow down source ~/.zshrc command
+if grep -q WSL /proc/version;
+then
+  export DISPLAY=$(ip route | awk '/default via / {print $3; exit}' 2>/dev/null):0.0
+  export LIBGL_ALWAYS_INDIRECT=1
+  title() { export TITLE="$*" }
+fi
