@@ -309,14 +309,18 @@
 
 (add-hook 'python-mode-hook 'python-mode-enter)
 
-
 (map! :after vterm
       :map vterm-mode-map
-      :nvi "C-c B" #'remove-python-project-breakpoints)
+      :nvi "C-c v" #'evil-paste-after)
+
+(map! :leader
+      (:prefix ("p" . "project")
+      :desc "Remove project breakpoints"
+      "m b" #'remove-python-project-breakpoints))
 
 (defun remove-python-project-breakpoints ()
   (interactive)
-  (shell-command (format "%s %s" "~/utility-scripts/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
+  (shell-command (format "%s %s" "~/code/utilities/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
   )
 
 
