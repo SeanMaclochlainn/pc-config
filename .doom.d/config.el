@@ -10,6 +10,7 @@
 (define-key global-map (kbd "C-M-r") 'vr/isearch-backward) ;; C-M-r
 (define-key global-map (kbd "C-M-s") 'vr/isearch-forward) ;; C-M-s
 (define-key global-map (kbd "C-c C") 'evilnc-comment-and-kill-ring-save)
+(set-background-color "black")
 (setq helm-candidate-number-limit 300)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq org-startup-folded t)
