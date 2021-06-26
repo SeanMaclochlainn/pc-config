@@ -307,6 +307,7 @@
 (map! :nve "C-c b" #'copy-python-breakpoint-to-kill-ring)
 (map! :nve "C-c B" #'remove-python-project-breakpoints)
 (map! :nve "C-c t" #'copy-python-test-path)
+(map! :i "C-c v" #'evil-paste-after)
 
 
 (defun python-mode-enter ()
@@ -316,8 +317,8 @@
 
 (map! :leader
       (:prefix ("p" . "project")
-      :desc "Remove project breakpoints"
-      "m b" #'remove-python-project-breakpoints))
+       :desc "Remove project breakpoints"
+       "m b" #'remove-python-project-breakpoints))
 
 (defun remove-python-project-breakpoints ()
   (interactive)
@@ -342,7 +343,7 @@
                   (set-background-color "#282828")
                   )
               (progn
-                  (set-background-color "black")
+                (set-background-color "black")
                 )
               )
             )
