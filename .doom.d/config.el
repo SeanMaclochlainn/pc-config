@@ -58,7 +58,10 @@
 ;; (define-key global-map (kbd "S-<f8>") 'breakpoint-below)
 (fset 'breakpoint
       (kmacro-lambda-form [escape ?i ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
+(fset 'insert-mode-breakpoint
+      (kmacro-lambda-form [?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\)] 0 "%d"))
 (define-key global-map (kbd "<f8>") 'breakpoint-below)
+(map! :i "C-c b" #'insert-mode-breakpoint)
 
 (fset 'clear-vterm
       (kmacro-lambda-form [escape ?i ?\C-a ?\C-k ?c ?l ?e ?a ?r return ?\C-c ?\C-l? ?\C-c ?\C-l] 0 "%d"))
