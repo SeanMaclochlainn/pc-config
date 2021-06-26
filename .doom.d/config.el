@@ -356,6 +356,7 @@
   "C-k" #'kill-line)
 
 (use-package! doom-themes
-  :config
-  (load-theme 'gruvbox-dark-medium t)
-  (set-background-color "black"))
+  :init (setq doom-theme 'gruvbox-dark-medium))
+
+(custom-set-faces
+ '(default ((t (:background "black")))))
