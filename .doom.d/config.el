@@ -10,11 +10,9 @@
 (define-key global-map (kbd "C-M-r") 'vr/isearch-backward) ;; C-M-r
 (define-key global-map (kbd "C-M-s") 'vr/isearch-forward) ;; C-M-s
 (define-key global-map (kbd "C-c C") 'evilnc-comment-and-kill-ring-save)
-(set-background-color "black")
 (setq helm-candidate-number-limit 300)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq org-startup-folded t)
-(setq doom-theme 'gruvbox-dark-medium)
 (use-package! magit
   :config
   (define-key magit-section-mode-map (kbd "<C-tab>") nil) ;; conflicts with nswbuff
@@ -339,10 +337,10 @@
           (lambda ()
             (if vterm-copy-mode
                 (progn
-                  (set-background-color "black")
+                  (set-background-color "#282828")
                   )
               (progn
-                (set-background-color "#282828")
+                  (set-background-color "black")
                 )
               )
             )
@@ -350,3 +348,9 @@
 
 (define-key! :keymaps +default-minibuffer-maps
   "C-k" #'kill-line)
+
+(use-package! doom-themes
+  :ensure t
+  :config
+  (load-theme 'gruvbox-dark-medium t)
+  (set-background-color "black"))
