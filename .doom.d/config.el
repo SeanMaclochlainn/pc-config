@@ -322,11 +322,31 @@
 (map! :leader
       (:prefix ("p" . "project")
        :desc "Remove project breakpoints"
-       "m b" #'remove-python-project-breakpoints))
+       "m r" #'remove-python-project-breakpoints))
+
+(map! :leader
+      (:prefix ("p" . "project")
+       :desc "Disable project breakpoints"
+       "m d" #'disable-python-project-breakpoints))
+
+(map! :leader
+      (:prefix ("p" . "project")
+       :desc "Enable project breakpoints"
+       "m e" #'enable-python-project-breakpoints))
 
 (defun remove-python-project-breakpoints ()
   (interactive)
   (shell-command (format "%s %s" "~/code/utilities/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
+  )
+
+(defun disable-python-project-breakpoints ()
+  (interactive)
+  (shell-command (format "%s %s" "~/code/utilities/disable-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
+  )
+
+(defun enable-python-project-breakpoints ()
+  (interactive)
+  (shell-command (format "%s %s" "~/code/utilities/enable-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
   )
 
 
