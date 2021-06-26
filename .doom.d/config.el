@@ -68,6 +68,9 @@
 (map! :after vterm
       :map vterm-mode-map
       :i "C-h" #'vterm-send-C-h)
+(map! :after vterm
+      :map vterm-mode-map
+      :i "C-c v" #'vterm-yank)
 
 (setq frame-title-format
       '(""
@@ -300,17 +303,12 @@
 (map! :nve "C-c b" #'copy-python-breakpoint-to-kill-ring)
 (map! :nve "C-c B" #'remove-python-project-breakpoints)
 (map! :nve "C-c t" #'copy-python-test-path)
-(map! :i "C-c v" #'evil-paste-after)
 
 
 (defun python-mode-enter ()
   (flycheck-select-checker 'python-flake8))
 
 (add-hook 'python-mode-hook 'python-mode-enter)
-
-(map! :after vterm
-      :map vterm-mode-map
-      :nvi "C-c v" #'evil-paste-after)
 
 (map! :leader
       (:prefix ("p" . "project")
