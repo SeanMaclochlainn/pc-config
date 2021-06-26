@@ -284,6 +284,10 @@
     (kill-new (concat "b " (file-truename buffer-file-name) ":" (replace-regexp-in-string "Line " "" (what-line))))))
 
 (map! :v "$" #'evil-last-non-blank)
+(map! :i "C-k" #'kill-line)
+(map! :after evil-org
+      :map evil-org-mode-map
+      :i "C-k" #'kill-line)
 
 (use-package! treemacs
   :config
@@ -348,7 +352,6 @@
   "C-k" #'kill-line)
 
 (use-package! doom-themes
-  :ensure t
   :config
   (load-theme 'gruvbox-dark-medium t)
   (set-background-color "black"))
