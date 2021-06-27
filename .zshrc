@@ -125,10 +125,10 @@ alias mc="make commit"
 setopt share_history
 bindkey '\ef' emacs-forward-word
 
-#seems to slow down source ~/.zshrc command
-if grep -q WSL /proc/version;
+is_wsl=$(grep -c WSL /proc/version)
+if [ "$is_wsl" -gt "0" ] && [ "$USER" = "smcloughlin" ];
 then
-  export DISPLAY=$(ip route | awk '/default via / {print $3; exit}' 2>/dev/null):0.0
-  export LIBGL_ALWAYS_INDIRECT=1
-  title() { export TITLE="$*" }
+ export DISPLAY=$(ip route | awk '/default via / {print $3; exit}' 2>/dev/null):0.0
+ export LIBGL_ALWAYS_INDIRECT=1
+ title() { export TITLE="$*" }
 fi
