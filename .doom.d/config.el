@@ -11,9 +11,9 @@
 (define-key global-map (kbd "C-M-s") 'vr/isearch-forward) ;; C-M-s
 (define-key global-map (kbd "C-c C") 'evilnc-comment-and-kill-ring-save)
 (setq helm-candidate-number-limit 300)
+(setq confirm-kill-processes nil)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq org-startup-folded t)
-(setq doom-theme 'gruvbox-dark-medium)
 (use-package! magit
   :config
   (define-key magit-section-mode-map (kbd "<C-tab>") nil) ;; conflicts with nswbuff
@@ -59,7 +59,10 @@
 ;; (define-key global-map (kbd "S-<f8>") 'breakpoint-below)
 (fset 'breakpoint
       (kmacro-lambda-form [escape ?i ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
+(fset 'insert-mode-breakpoint
+      (kmacro-lambda-form [?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\)] 0 "%d"))
 (define-key global-map (kbd "<f8>") 'breakpoint-below)
+(map! :i "C-c b" #'insert-mode-breakpoint)
 
 (fset 'clear-vterm
       (kmacro-lambda-form [escape ?i ?\C-a ?\C-k ?c ?l ?e ?a ?r return ?\C-c ?\C-l? ?\C-c ?\C-l] 0 "%d"))
@@ -69,6 +72,9 @@
 (map! :after vterm
       :map vterm-mode-map
       :i "C-h" #'vterm-send-C-h)
+(map! :after vterm
+      :map vterm-mode-map
+      :i "C-c v" #'vterm-yank)
 
 (setq frame-title-format
       '(""
@@ -282,6 +288,10 @@
     (kill-new (concat "b " (file-truename buffer-file-name) ":" (replace-regexp-in-string "Line " "" (what-line))))))
 
 (map! :v "$" #'evil-last-non-blank)
+(map! :i "C-k" #'kill-line)
+(map! :after evil-org
+      :map evil-org-mode-map
+      :i "C-k" #'kill-line)
 
 (use-package! treemacs
   :config
@@ -309,14 +319,34 @@
 
 (add-hook 'python-mode-hook 'python-mode-enter)
 
+(map! :leader
+      (:prefix ("p" . "project")
+       :desc "Remove project breakpoints"
+       "m r" #'remove-python-project-breakpoints))
 
-(map! :after vterm
-      :map vterm-mode-map
-      :nvi "C-c B" #'remove-python-project-breakpoints)
+(map! :leader
+      (:prefix ("p" . "project")
+       :desc "Disable project breakpoints"
+       "m d" #'disable-python-project-breakpoints))
+
+(map! :leader
+      (:prefix ("p" . "project")
+       :desc "Enable project breakpoints"
+       "m e" #'enable-python-project-breakpoints))
 
 (defun remove-python-project-breakpoints ()
   (interactive)
-  (shell-command (format "%s %s" "~/utility-scripts/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
+  (shell-command (format "%s %s" "~/code/utilities/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
+  )
+
+(defun disable-python-project-breakpoints ()
+  (interactive)
+  (shell-command (format "%s %s" "~/code/utilities/disable-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
+  )
+
+(defun enable-python-project-breakpoints ()
+  (interactive)
+  (shell-command (format "%s %s" "~/code/utilities/enable-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
   )
 
 
@@ -334,10 +364,10 @@
           (lambda ()
             (if vterm-copy-mode
                 (progn
-                  (set-background-color "black")
+                  (set-background-color "#282828")
                   )
               (progn
-                (set-background-color "#282828")
+                (set-background-color "black")
                 )
               )
             )
@@ -345,3 +375,9 @@
 
 (define-key! :keymaps +default-minibuffer-maps
   "C-k" #'kill-line)
+
+(use-package! doom-themes
+  :init (setq doom-theme 'gruvbox-dark-medium))
+
+(custom-set-faces
+ '(default ((t (:background "black")))))

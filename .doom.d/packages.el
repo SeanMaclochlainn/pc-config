@@ -70,3 +70,4 @@
 
 (if (not (string= user-real-login-name "smcloughlin"))
     (package! mozc))
+(package! command-log-mode)
