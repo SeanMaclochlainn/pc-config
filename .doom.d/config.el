@@ -220,6 +220,11 @@
 (define-key global-map (kbd "S-<up>") 'windmove-up)
 (define-key global-map (kbd "S-<down>") 'windmove-down)
 
+(map! :leader
+      (:prefix ("w" . "window")
+       :desc "window right"
+       "e" #'windmove-right))
+
 (map! :after evil-org
       :map evil-org-mode-map
       :n
