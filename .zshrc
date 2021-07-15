@@ -125,6 +125,7 @@ alias mc="make commit"
 setopt share_history
 bindkey '\ef' emacs-forward-word
 
+export PYTHONSTARTUP="$HOME/code/github-libraries/pythonrc/pythonrc.py"
 is_wsl=$(grep -c WSL /proc/version)
 if [ "$is_wsl" -gt "0" ] && [ "$USER" = "smcloughlin" ];
 then
