@@ -386,3 +386,11 @@
 
 (custom-set-faces
  '(default ((t (:background "black")))))
+
+(use-package! org-journal
+  :config
+  (setq org-journal-dir "~/gdrive/notes/org-journal" org-journal-file-type 'monthly))
+
+(use-package! org-roam
+  :config
+  (setq org-roam-directory "~/gdrive/notes/org-roam" org-roam-dailies-directory "~/gdrive/notes/org-roam-dailies"))
