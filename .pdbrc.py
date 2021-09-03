@@ -8,15 +8,13 @@ class Config(pdb.DefaultConfig):
         # Save history across sessions
         import readline
         from pathlib import Path
+
         histfile = Path("~/.pdb-pyhist").expanduser()
         try:
             readline.read_history_file(histfile)
         except IOError:
             pass
         import atexit
+
         atexit.register(readline.write_history_file, histfile)
         readline.set_history_length(500)
-
-#don't think this is needed
-# _pdbrc_init()
-# del _pdbrc_init
