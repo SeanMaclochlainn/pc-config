@@ -1,7 +1,12 @@
 (setq confirm-kill-emacs nil)
 (setq neo-smart-open t)
 (global-set-key "\C-s" 'swiper)
-(global-set-key (kbd "<f9>") 'save-buffer)
+(global-set-key (kbd "<f9>") 'format-and-save)
+(defun format-and-save ()
+  (interactive)
+  (+format/buffer)
+  (save-buffer)
+)
 (define-key global-map (kbd "C-c r") 'vr/replace)
 (define-key global-map (kbd "C-c q") 'vr/query-replace)
 ;; if you use multiple-cursors, this is for you:
@@ -56,7 +61,6 @@
 
 (fset 'breakpoint-below
       (kmacro-lambda-form [escape ?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
-;; (define-key global-map (kbd "S-<f8>") 'breakpoint-below)
 (fset 'breakpoint
       (kmacro-lambda-form [escape ?i ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
 (fset 'insert-mode-breakpoint
@@ -314,10 +318,11 @@
 (map! :nve "C-u" #'evil-scroll-up-fixed)
 
 (map! :nve "C-c b" #'copy-python-breakpoint-to-kill-ring)
-(map! :nve "C-c B" #'remove-python-project-breakpoints)
+(map! :nve "C-c r b" #'remove-python-project-breakpoints)
 (map! :nve "C-c t" #'copy-python-test-path)
 (map! :i "C-c v" #'evil-paste-after)
-
+(map! :nve "C-c w c" #'wsl-copy)
+(map! :inve "C-c w p" #'wsl-paste)
 
 (defun python-mode-enter ()
   (flycheck-select-checker 'python-flake8))
