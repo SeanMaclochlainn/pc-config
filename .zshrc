@@ -127,7 +127,7 @@ bindkey '\ef' emacs-forward-word
 
 export PYTHONSTARTUP="$HOME/code/github-libraries/pythonrc/pythonrc.py"
 is_wsl=$(grep -c WSL /proc/version)
-if [ "$is_wsl" -gt "0" ] && [ "$USER" = "smcloughlin" ];
+if [ "$PC_TYPE" = "work" ];
 then
  export DISPLAY=$(ip route | awk '/default via / {print $3; exit}' 2>/dev/null):0.0
  export LIBGL_ALWAYS_INDIRECT=1
@@ -140,4 +140,3 @@ then
 
  xset r rate 250 100
 fi
-
