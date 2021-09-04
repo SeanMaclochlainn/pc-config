@@ -6,7 +6,7 @@
   (interactive)
   (+format/buffer)
   (save-buffer)
-)
+  )
 (define-key global-map (kbd "C-c r") 'vr/replace)
 (define-key global-map (kbd "C-c q") 'vr/query-replace)
 ;; if you use multiple-cursors, this is for you:
@@ -392,10 +392,65 @@
 (custom-set-faces
  '(default ((t (:background "black")))))
 
+(defun is-work-pc ()
+  (if (string= (getenv "PC_TYPE") "work") 't nil))
+
+(if (is-work-pc)
+    (setq counsel-async-command-delay 0.3))
+
+
+;; terminal mode settings
+(use-package! ivy
+  :bind (:map ivy-minibuffer-map
+         ("C-q" . ivy-call-and-recenter)
+         ))
+
+(define-key global-map (kbd "M-k") nil) ;causes issues in terminal mode
+
+
+(defun personal-org-journal-settings ()
+  (setq org-journal-dir (concat (getenv "DRIVE") "/notes/org-journal")
+        org-journal-file-type 'monthly
+        org-journal-carryover-items ""
+        org-roam-directory (concat (getenv "DRIVE") "/notes/org-roam")))
+
+(defun work-org-journal-settings ()
+  (setq org-journal-dir "~/notes/org-journal"
+        org-journal-file-type 'weekly
+        org-journal-carryover-items "TODO=\"TODO\"|TODO=\"PROJ\"|TODO=\"STRT\"|TODO=\"WAIT\"|TODO=\"HOLD\""))
+
+(defun personal-org-roam-settings ()
+  (setq org-roam-directory (concat (getenv "DRIVE") "/notes/org-roam")))
+
+(defun work-org-roam-settings ()
+  (setq org-roam-directory "~/notes/org-roam"))
+
+(defun org-journal-settings ()
+  (if (is-work-pc)
+      (work-org-journal-settings)
+    (personal-org-journal-settings)))
+
+(defun org-roam-settings ()
+  (if (is-work-pc)
+      (work-org-roam-settings)
+    (personal-org-roam-settings)))
+
 (use-package! org-journal
   :config
-  (setq org-journal-dir "~/gdrive/notes/org-journal" org-journal-file-type 'monthly))
+  (org-journal-settings))
 
 (use-package! org-roam
   :config
-  (setq org-roam-directory "~/gdrive/notes/org-roam" org-roam-dailies-directory "~/gdrive/notes/org-roam-dailies"))
+  (org-roam-settings))
+
+(defun load-personal-org-config ()
+  (interactive)
+  (personal-org-journal-settings)
+  (personal-org-roam-settings)
+  (org-roam-db-sync))
+
+(defun load-work-org-config ()
+  (interactive)
+  (work-org-journal-settings)
+  (work-org-roam-settings)
+  (org-roam-db-sync))
