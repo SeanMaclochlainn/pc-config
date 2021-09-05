@@ -464,3 +464,5 @@
 (use-package! org
   :config
   (setq org-startup-with-inline-images t))
+
+(setq display-line-numbers-type 'relative)
