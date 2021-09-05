@@ -140,3 +140,5 @@ then
 
  xset r rate 250 100
 fi
+
+export PATH=$HOME/code/utilities:$PATH
