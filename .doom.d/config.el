@@ -457,3 +457,7 @@
   (work-org-journal-settings)
   (work-org-roam-settings)
   (org-roam-db-sync))
+
+(use-package! org
+  :config
+  (setq org-startup-with-inline-images t))
