@@ -344,6 +344,9 @@
        :desc "Enable project breakpoints"
        "m e" #'enable-python-project-breakpoints))
 
+(map! :leader
+      "SPC" #'avy-goto-char-2) ;; could also use avy-goto-char-timer
+
 (defun remove-python-project-breakpoints ()
   (interactive)
   (shell-command (format "%s %s" "~/code/utilities/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
