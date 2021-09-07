@@ -1,12 +1,18 @@
 (defun is-work-pc ()
-  (if (string= (getenv "PC_TYPE") "work") 't nil))
+  (if (string= (getenv "PC_USAGE") "work") 't nil))
+
+(defun pc-type ()
+  (getenv "PC_TYPE"))
+
 (defun is-wsl ()
   (if (string= (substring (shell-command-to-string "is_wsl.sh") 0 1) "1") 't nil))
+
 (setq confirm-kill-emacs nil)
 (setq neo-smart-open t)
 (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "<f9>") 'format-and-save)
-(if (and (is-wsl) (not (is-work-pc)))
+
+(if (string= (pc-type) "desktop")
     (setq doom-font (font-spec :size 23)))
 
 (defun format-and-save ()
