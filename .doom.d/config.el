@@ -432,10 +432,12 @@
         org-journal-carryover-items "TODO=\"TODO\"|TODO=\"PROJ\"|TODO=\"STRT\"|TODO=\"WAIT\"|TODO=\"HOLD\""))
 
 (defun personal-org-roam-settings ()
-  (setq org-roam-directory (concat (getenv "DRIVE") "/notes/org-roam")))
+  (setq org-roam-directory (concat (getenv "DRIVE") "/notes/org-roam")
+        +org-roam-open-buffer-on-find-file nil))
 
 (defun work-org-roam-settings ()
-  (setq org-roam-directory "~/notes/org-roam"))
+  (setq org-roam-directory "~/notes/org-roam"
+        +org-roam-open-buffer-on-find-file nil))
 
 (defun org-journal-settings ()
   (if (is-work-pc)
