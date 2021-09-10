@@ -66,10 +66,6 @@
 (setq magit-ediff-dwim-show-on-hunks t)
 (setq +evil-want-o/O-to-continue-comments nil)
 
-(use-package! super-save
-  :config
-  (super-save-mode +1))
-
 (use-package! realgud-ipdb)
 
 (fset 'breakpoint-below
