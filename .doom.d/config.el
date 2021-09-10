@@ -106,7 +106,7 @@
   ;; make evil-search-word look for symbol rather than word boundaries
   ;; (setq-default evil-symbol-word-search t)
   (setq evil-want-fine-undo t)
-  (modify-syntax-entry ?_ "w"))
+  )
 
 (use-package! vterm
   :config
