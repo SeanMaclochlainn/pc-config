@@ -147,6 +147,7 @@
       :map company-active-map
       "C-h" #'backward-delete-char-untabify)
 (map! :n "C-t" #'evil-scroll-line-down)
+(map! :nive "C-l" #'save-buffer)
 ;; EAF
 ;; (use-package! eaf
 ;;   :load-path "~/.emacs.d/site-lisp/emacs-application-framework" ; Set to "/usr/share/emacs/site-lisp/eaf" if installed from AUR
