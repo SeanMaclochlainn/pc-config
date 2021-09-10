@@ -9,7 +9,6 @@
 
 (setq confirm-kill-emacs nil)
 (setq neo-smart-open t)
-(global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "<f9>") 'format-and-save)
 
 (if (string= (pc-type) "desktop")
@@ -142,8 +141,9 @@
 (map! :after evil-org
       :map company-active-map
       "C-h" #'backward-delete-char-untabify)
-(map! :n "C-t" #'evil-scroll-line-down)
-(map! :nive "C-l" #'save-buffer)
+(map! :n "C-l" #'evil-scroll-line-down)
+(map! :nive "C-s" #'save-buffer)
+(map! :nive "C-t" #'swiper)
 ;; EAF
 ;; (use-package! eaf
 ;;   :load-path "~/.emacs.d/site-lisp/emacs-application-framework" ; Set to "/usr/share/emacs/site-lisp/eaf" if installed from AUR
