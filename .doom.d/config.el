@@ -417,54 +417,58 @@
 (define-key global-map (kbd "M-k") nil) ;causes issues in terminal mode
 
 
-(defun personal-org-journal-settings ()
+(defun load-personal-org-journal-settings ()
+  (interactive)
   (setq org-journal-dir (concat (getenv "DRIVE") "/notes/org-journal")
         org-journal-file-type 'monthly
         org-journal-carryover-items ""
         org-roam-directory (concat (getenv "DRIVE") "/notes/org-roam")))
 
-(defun work-org-journal-settings ()
+(defun load-work-org-journal-settings ()
+  (interactive)
   (setq org-journal-dir "~/notes/org-journal"
         org-journal-file-type 'weekly
         org-journal-carryover-items "TODO=\"TODO\"|TODO=\"PROJ\"|TODO=\"STRT\"|TODO=\"WAIT\"|TODO=\"HOLD\""))
 
-(defun personal-org-roam-settings ()
+(defun load-personal-org-roam-settings ()
+  (interactive)
   (setq org-roam-directory (concat (getenv "DRIVE") "/notes/org-roam")
-        +org-roam-open-buffer-on-find-file nil))
+        +org-roam-open-buffer-on-find-file nil)
+  (org-roam-db-sync))
 
-(defun work-org-roam-settings ()
+(defun load-work-org-roam-settings ()
+  (interactive)
   (setq org-roam-directory "~/notes/org-roam"
-        +org-roam-open-buffer-on-find-file nil))
+        +org-roam-open-buffer-on-find-file nil)
+  (org-roam-db-sync))
 
-(defun org-journal-settings ()
+(defun default-org-journal-settings ()
   (if (is-work-pc)
-      (work-org-journal-settings)
-    (personal-org-journal-settings)))
+      (load-work-org-journal-settings)
+    (load-personal-org-journal-settings)))
 
-(defun org-roam-settings ()
+(defun default-org-roam-settings ()
   (if (is-work-pc)
-      (work-org-roam-settings)
-    (personal-org-roam-settings)))
+      (load-work-org-roam-settings)
+    (load-personal-org-roam-settings)))
 
 (use-package! org-journal
   :config
-  (org-journal-settings))
+  (default-org-journal-settings))
 
 (use-package! org-roam
   :config
-  (org-roam-settings))
+  (default-org-roam-settings))
 
 (defun load-personal-org-config ()
   (interactive)
-  (personal-org-journal-settings)
-  (personal-org-roam-settings)
-  (org-roam-db-sync))
+  (load-personal-org-journal-settings)
+  (load-personal-org-roam-settings))
 
 (defun load-work-org-config ()
   (interactive)
-  (work-org-journal-settings)
-  (work-org-roam-settings)
-  (org-roam-db-sync))
+  (load-work-org-journal-settings)
+  (load-work-org-roam-settings))
 
 (use-package! org
   :config
