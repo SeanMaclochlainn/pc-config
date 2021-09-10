@@ -129,6 +129,8 @@ alias edf="emacsclient -s emacs-server --create-frame &"
 alias edt="emacsclient -nw -s emacs-server"
 alias ds="~/.emacs.d/bin/doom sync"
 alias du="~/.emacs.d/bin/doom upgrade"
+alias dr="django-admin runserver"
+alias c="code ."
 setopt share_history
 bindkey '\ef' emacs-forward-word
 
