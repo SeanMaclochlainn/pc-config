@@ -131,6 +131,18 @@ alias ds="~/.emacs.d/bin/doom sync"
 alias du="~/.emacs.d/bin/doom upgrade"
 alias dr="django-admin runserver"
 alias c="code ."
+alias cs="config status"
+alias cl="config pull"
+alias ca="config add"
+alias cap="config add --patch"
+alias cc="config commit -v"
+alias cdd="config diff"
+alias cds="config diff --staged"
+alias cpp="config push"
+alias cs="config status"
+alias cst="config stash"
+alias csta="config stash apply"
+
 setopt share_history
 bindkey '\ef' emacs-forward-word
 
