@@ -357,6 +357,40 @@
 (map! :leader
       "SPC" #'avy-goto-char-2) ;; could also use avy-goto-char-timer
 
+(defun top-left-window ()
+  (interactive)
+  (windmove-left)
+  (windmove-up)
+  )
+
+(defun top-right-window ()
+  (interactive)
+  (windmove-right)
+  (windmove-up)
+  )
+
+(defun bottom-left-window ()
+  (interactive)
+  (windmove-left)
+  (windmove-down)
+  )
+
+(defun bottom-right-window ()
+  (interactive)
+  (windmove-right)
+  (windmove-down)
+  )
+
+(map! :leader "w '" #'top-left-window)
+(map! :leader "w /" #'top-right-window)
+(map! :leader "w `" #'bottom-left-window)
+(map! :leader "w z" #'bottom-right-window)
+
+(map! :leader
+      (:prefix ("v" . "vterm")
+       :desc "Vterm"
+       "c" #'clear-vterm))
+
 (defun remove-python-project-breakpoints ()
   (interactive)
   (shell-command (format "%s %s" "~/code/utilities/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
