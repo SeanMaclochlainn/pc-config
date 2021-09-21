@@ -142,6 +142,7 @@ alias cst="config status"
 alias cstall="config stash --all"
 alias csta="config stash apply"
 alias nrs="npm run start"
+alias u="sudo apt-get update && sudo apt-get -y upgrade"
 
 setopt share_history
 bindkey '\ef' emacs-forward-word
