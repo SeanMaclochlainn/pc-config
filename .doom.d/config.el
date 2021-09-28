@@ -87,6 +87,9 @@
 (map! :after vterm
       :map vterm-mode-map
       :i "C-c v" #'vterm-yank)
+(map! :after vterm
+      :map vterm-mode-map
+      :i "C-t" #'swiper)
 
 (setq frame-title-format
       '(""
