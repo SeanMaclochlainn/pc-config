@@ -509,6 +509,9 @@
 
 (use-package! org
   :config
-  (setq org-startup-with-inline-images t))
+  (setq org-startup-with-inline-images t org-attach-id-dir (concat (getenv "DRIVE") "/notes/org-roam/attach")))
 
 (setq display-line-numbers-type 'relative)
+(package-initialize)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
