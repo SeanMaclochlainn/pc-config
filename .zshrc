@@ -142,7 +142,16 @@ alias cst="config status"
 alias cstall="config stash --all"
 alias csta="config stash apply"
 alias nrs="npm run start"
-alias u="sudo apt-get update && sudo apt-get -y upgrade"
+
+update_os_packages(){
+    if cat /etc/os-release | grep -q "arch";
+    then
+        sudo pacman -Syu --noconfirm
+    else
+        sudo apt-get update && sudo apt-get -y upgrade
+    fi
+}
+alias u="update_os_packages"
 
 setopt share_history
 bindkey '\ef' emacs-forward-word
