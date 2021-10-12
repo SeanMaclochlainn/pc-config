@@ -146,7 +146,7 @@ alias nrs="npm run start"
 update_os_packages(){
     if cat /etc/os-release | grep -q "arch";
     then
-        sudo pacman -Syu --noconfirm
+        sudo pacman -Syu --noconfirm && yay -Syu
     else
         sudo apt-get update && sudo apt-get -y upgrade
     fi
