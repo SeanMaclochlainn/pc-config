@@ -11,9 +11,6 @@
 (setq neo-smart-open t)
 (global-set-key (kbd "<f9>") 'format-and-save)
 
-(if (string= (pc-type) "desktop")
-    (setq doom-font (font-spec :size 23)))
-
 (defun format-and-save ()
   (interactive)
   (+format/buffer)
