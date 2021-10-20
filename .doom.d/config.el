@@ -90,6 +90,9 @@
 (map! :after vterm
       :map vterm-mode-map
       :i "C-t" #'swiper)
+(map! :after vterm
+      :map vterm-mode-map
+      :i "<DEL>" #'vterm-send-delete)
 
 (setq frame-title-format
       '(""
