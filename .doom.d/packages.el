@@ -72,3 +72,4 @@
 (package! command-log-mode)
 (package!  exec-path-from-shell)
 (package!  csv-mode)
+(package! good-scroll)
