@@ -333,7 +333,7 @@
 (map! :nve "C-c b" #'copy-python-breakpoint-to-kill-ring)
 (map! :nve "C-c r b" #'remove-python-project-breakpoints)
 (map! :nve "C-c t" #'copy-python-test-path)
-(map! :i "C-c v" #'evil-paste-after)
+(map! :i "C-c v" #'evil-paste-before)
 (map! :nve "C-c w c" #'wsl-copy)
 (map! :inve "C-c w p" #'wsl-paste)
 
