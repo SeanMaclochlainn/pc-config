@@ -34,10 +34,9 @@
   )
 
 (with-eval-after-load 'lsp-mode
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.env_python3.8\\'"))
-
-(with-eval-after-load 'lsp-mode
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\venv\\'"))
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.env_python3.8\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\venv\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.mypy_cache\\'"))
 
 
 (use-package! nswbuff                    ; Quick switching between buffers
