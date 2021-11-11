@@ -142,6 +142,7 @@ alias cst="config status"
 alias cstall="config stash --all"
 alias csta="config stash apply"
 alias nrs="npm run start"
+alias du="docker-compose up"
 
 update_os_packages(){
     if cat /etc/os-release | grep -q "arch";
