@@ -249,6 +249,11 @@
       "S-<up>" #'windmove-up
       "S-<down>" #'windmove-down)
 
+(map! :leader
+      (:prefix ("w" . "window")
+       :desc "other window"
+       "o" #'other-window))
+
 
 
 ;; (unless (display-graphic-p)
