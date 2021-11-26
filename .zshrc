@@ -128,7 +128,7 @@ alias ed="emacs --daemon=emacs-server"
 alias edf="emacsclient -s emacs-server --create-frame &"
 alias edt="emacsclient -nw -s emacs-server"
 alias ds="~/.emacs.d/bin/doom sync"
-alias du="~/.emacs.d/bin/doom upgrade"
+alias du="~/.emacs.d/bin/doom --yes upgrade"
 alias dr="django-admin runserver"
 alias c="code ."
 alias cl="config pull"
@@ -142,7 +142,7 @@ alias cst="config status"
 alias cstall="config stash --all"
 alias csta="config stash apply"
 alias nrs="npm run start"
-alias du="docker-compose up"
+alias dcu="docker-compose up"
 
 update_os_packages(){
     if cat /etc/os-release | grep -q "arch";
