@@ -143,6 +143,7 @@ alias cstall="config stash --all"
 alias csta="config stash apply"
 alias nrs="npm run start"
 alias dcu="docker-compose up"
+alias ke="killall emacs"
 
 update_os_packages(){
     if cat /etc/os-release | grep -q "arch";
