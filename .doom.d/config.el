@@ -121,6 +121,7 @@
        "v"       #'+evil/window-vsplit-and-follow))
 
 (map! :ie "C-h" #'backward-delete-char-untabify)
+(map! :i "C-d" #'delete-forward-char)
 (map! (:map (minibuffer-local-map
              minibuffer-local-ns-map
              minibuffer-local-completion-map
@@ -319,6 +320,10 @@
       :map evil-org-mode-map
       :i "C-k" #'kill-line)
 
+(map! :after evil-org
+      :map evil-org-mode-map
+      :in "M-k" nil)
+
 (use-package! treemacs
   :config
   (treemacs-follow-mode 1)
@@ -457,7 +462,6 @@
 
 (define-key global-map (kbd "M-k") nil) ;causes issues in terminal mode
 
-
 (defun load-personal-org-journal-settings ()
   (interactive)
   (setq org-journal-dir (concat (getenv "DRIVE") "/notes/org-journal")
@@ -515,7 +519,7 @@
   :config
   (setq org-startup-with-inline-images t org-attach-id-dir (concat (getenv "DRIVE") "/notes/org-roam/attach")))
 
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type 'visual)
 (package-initialize)
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
