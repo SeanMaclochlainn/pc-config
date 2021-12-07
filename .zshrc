@@ -153,7 +153,8 @@ update_os_packages(){
         sudo apt-get update && sudo apt-get -y upgrade
     fi
 }
-alias u="update_os_packages"
+alias ul="update_os_packages"
+alias u="update_os_packages && ~/.emacs.d/bin/doom --yes upgrade"
 
 setopt share_history
 bindkey '\ef' emacs-forward-word
