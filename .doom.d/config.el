@@ -38,6 +38,9 @@
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\venv\\'")
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.mypy_cache\\'"))
 
+(use-package! lsp-mode
+  :custom
+  (lsp-headerline-breadcrumb-enable t))
 
 (use-package! nswbuff                    ; Quick switching between buffers
   :bind* (("<C-end>"           . nswbuff-switch-to-next-buffer)
