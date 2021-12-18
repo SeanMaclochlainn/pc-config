@@ -520,9 +520,10 @@
 
 (use-package! org
   :config
-  (setq org-startup-with-inline-images t org-attach-id-dir (concat (getenv "DRIVE") "/notes/org-roam/attach")))
+  (setq org-startup-with-inline-images t org-attach-id-dir (concat (getenv "DRIVE") "/notes/org-roam/attach") org-startup-folded t))
 
 (setq display-line-numbers-type 'visual)
 (package-initialize)
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
+(add-to-list 'auto-mode-alist '("tsconfig.json" . jsonc-mode))

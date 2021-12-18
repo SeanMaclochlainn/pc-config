@@ -73,3 +73,4 @@
 (package!  exec-path-from-shell)
 (package!  csv-mode)
 (package! good-scroll)
+(unpin! json-mode)
