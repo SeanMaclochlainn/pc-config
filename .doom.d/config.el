@@ -1,9 +1,6 @@
 (defun is-work-pc ()
   (if (string= (getenv "PC_USAGE") "work") 't nil))
 
-(defun pc-type ()
-  (getenv "PC_TYPE"))
-
 (defun is-wsl ()
   (if (string= (substring (shell-command-to-string "is_wsl.sh") 0 1) "1") 't nil))
 
