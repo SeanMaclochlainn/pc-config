@@ -18,6 +18,11 @@ ZSH_THEME="robbyrussell"
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
+# Printing in colour - https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux?answertab=votes#tab-top
+YELLOW='\033[0;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -141,6 +146,7 @@ alias cpp="config push"
 alias cst="config status"
 alias cstall="config stash --all"
 alias csta="config stash apply"
+alias cco="config checkout"
 alias nrs="npm run start"
 alias dcu="docker-compose up"
 alias ke="killall emacs"
@@ -154,8 +160,21 @@ update_os_packages(){
         sudo apt-get update && sudo apt-get -y upgrade
     fi
 }
+
+update_pc_config(){
+    if [[ $(config diff --stat) != '' ]];
+    then
+        echo -e "${YELLOW}> Warning: could not update pc config due to dirty workspace${NC}"
+    else
+        echo -e "${GREEN}> Updating pc config...${NC}"
+        config pull
+        echo -e "${GREEN}> Pc config updated.${NC}"
+    fi
+}
+
 alias ul="update_os_packages"
-alias u="update_os_packages && ~/.emacs.d/bin/doom --yes upgrade"
+alias u="update_os_packages && update_pc_config && ~/.emacs.d/bin/doom --yes upgrade"
+alias s="source ~/.zshrc"
 
 setopt share_history
 bindkey '\ef' emacs-forward-word
