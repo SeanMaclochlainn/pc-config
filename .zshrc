@@ -150,6 +150,7 @@ alias ns="npm run start"
 alias du="docker-compose up"
 alias ke="killall emacs"
 alias ni="npm install"
+alias s="source ~/.zshrc"
 
 update_os_packages(){
     if cat /etc/os-release | grep -q "arch";
@@ -167,14 +168,17 @@ update_pc_config(){
     else
         echo -e "${GREEN}> Updating pc config...${NC}"
         config pull
-        echo -e "${GREEN}> Pc config updated.${NC}"
+        echo -e "> Pc config updated. Reloading zshrc..."
+        source ~/.zshrc
+        echo -e "${GREEN}> Pc config update finished.${NC}"
+
     fi
 }
 
 alias ul="update_os_packages"
-alias u="update_os_packages && update_pc_config && ~/.emacs.d/bin/doom --yes upgrade"
 alias ue="~/.emacs.d/bin/doom --yes upgrade"
-alias s="source ~/.zshrc"
+alias up="update_pc_config"
+alias u="update_os_packages && update_pc_config && ~/.emacs.d/bin/doom --yes upgrade"
 
 setopt share_history
 bindkey '\ef' emacs-forward-word
