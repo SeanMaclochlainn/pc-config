@@ -133,7 +133,6 @@ alias ed="emacs --daemon=emacs-server"
 alias edf="emacsclient -s emacs-server --create-frame &"
 alias edt="emacsclient -nw -s emacs-server"
 alias ds="~/.emacs.d/bin/doom sync"
-alias du="~/.emacs.d/bin/doom --yes upgrade"
 alias dr="django-admin runserver"
 alias c="code ."
 alias cl="config pull"
@@ -147,8 +146,8 @@ alias cst="config status"
 alias cstall="config stash --all"
 alias csta="config stash apply"
 alias cco="config checkout"
-alias nrs="npm run start"
-alias dcu="docker-compose up"
+alias ns="npm run start"
+alias du="docker-compose up"
 alias ke="killall emacs"
 alias ni="npm install"
 
@@ -174,6 +173,7 @@ update_pc_config(){
 
 alias ul="update_os_packages"
 alias u="update_os_packages && update_pc_config && ~/.emacs.d/bin/doom --yes upgrade"
+alias ue="~/.emacs.d/bin/doom --yes upgrade"
 alias s="source ~/.zshrc"
 
 setopt share_history
