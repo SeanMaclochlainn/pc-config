@@ -182,7 +182,7 @@ update_utilities(){
     else
         echo -e "${GREEN}> Updating utilities...${NC}"
         git pull
-        echo -e "${GREEN}> Utilities updated.${NC}"
+        echo -e "${GREEN}> Utilities update finished.${NC}"
     fi
 }
 
@@ -190,7 +190,7 @@ alias ul="update_os_packages"
 alias ue="~/.emacs.d/bin/doom --yes upgrade"
 alias up="update_pc_config"
 alias uu="update_utilities"
-alias u="update_os_packages && update_pc_config && ~/.emacs.d/bin/doom --yes upgrade"
+alias u="update_os_packages && update_pc_config && update_utilities && ~/.emacs.d/bin/doom --yes upgrade"
 
 setopt share_history
 bindkey '\ef' emacs-forward-word
