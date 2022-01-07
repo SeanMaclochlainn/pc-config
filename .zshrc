@@ -171,13 +171,25 @@ update_pc_config(){
         echo -e "> Pc config updated. Reloading zshrc..."
         source ~/.zshrc
         echo -e "${GREEN}> Pc config update finished.${NC}"
+    fi
+}
 
+update_utilities(){
+    cd ~/code/utilities
+    if [[ $(git diff --stat) != '' ]];
+    then
+        echo -e "${YELLOW}> Warning: could not update utilities due to dirty workspace${NC}"
+    else
+        echo -e "${GREEN}> Updating utilities...${NC}"
+        git pull
+        echo -e "${GREEN}> Utilities updated.${NC}"
     fi
 }
 
 alias ul="update_os_packages"
 alias ue="~/.emacs.d/bin/doom --yes upgrade"
 alias up="update_pc_config"
+alias uu="update_utilities"
 alias u="update_os_packages && update_pc_config && ~/.emacs.d/bin/doom --yes upgrade"
 
 setopt share_history
