@@ -73,7 +73,7 @@
 (map! :i "C-c b" #'insert-mode-breakpoint)
 
 (fset 'clear-vterm
-      (kmacro-lambda-form [escape ?i ?\C-a ?\C-k ?c ?l ?e ?a ?r return ?\C-c ?\C-l? ?\C-c ?\C-l] 0 "%d"))
+      (kmacro-lambda-form [escape ?i ?\C-a ?\C-k ?c ?l ?e ?a ?r return ?\C-c ?\C-l? ?\C-c ?\C-l ?\C-a] 0 "%d"))
 (map! :after vterm
       :map vterm-mode-map
       :ni "<f7>" #'clear-vterm)
