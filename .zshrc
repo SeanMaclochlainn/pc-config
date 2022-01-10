@@ -184,6 +184,7 @@ update_utilities(){
         git pull
         echo -e "${GREEN}> Utilities update finished.${NC}"
     fi
+    cd -
 }
 
 alias ul="update_os_packages"
