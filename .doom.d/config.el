@@ -64,11 +64,9 @@
 (use-package! realgud-ipdb)
 
 (fset 'breakpoint-below
-      (kmacro-lambda-form [escape ?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
-(fset 'breakpoint
-      (kmacro-lambda-form [escape ?i ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) f9 escape] 0 "%d"))
+      (kmacro-lambda-form [escape ?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) ?\C-s escape] 0 "%d"))
 (fset 'insert-mode-breakpoint
-      (kmacro-lambda-form [?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\)] 0 "%d"))
+      (kmacro-lambda-form [?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) ?\C-s] 0 "%d"))
 (define-key global-map (kbd "<f8>") 'breakpoint-below)
 (map! :i "C-c b" #'insert-mode-breakpoint)
 
