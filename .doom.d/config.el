@@ -336,15 +336,23 @@
   (interactive)
   (evil-scroll-up 4))
 
+(evil-define-command evil-insert-mode-paste (count &optional register yank-handler)
+  "Extends evil-paste-before so that the cursor is moved to the end of the inserted text"
+  :suppress-operator t
+  (interactive "*P<x>")
+  (evil-paste-before count register yank-handler)
+  (forward-char))
+
 (map! :nve "C-d" #'evil-scroll-down-fixed)
 (map! :nve "C-u" #'evil-scroll-up-fixed)
 
 (map! :nve "C-c b" #'copy-python-breakpoint-to-kill-ring)
 (map! :nve "C-c r b" #'remove-python-project-breakpoints)
 (map! :nve "C-c t" #'copy-python-test-path)
-(map! :i "C-c v" #'evil-paste-before)
+(map! :i "C-c v" #'evil-insert-mode-paste)
 (map! :nve "C-c w c" #'wsl-copy)
 (map! :inve "C-c w p" #'wsl-paste)
+
 
 (defun python-mode-enter ()
   (flycheck-select-checker 'python-flake8))
