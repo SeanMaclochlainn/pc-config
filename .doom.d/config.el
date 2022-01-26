@@ -530,3 +530,7 @@
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 (add-to-list 'auto-mode-alist '("tsconfig.json" . jsonc-mode))
+
+;; disables evil-snipe s/S
+(remove-hook 'doom-first-input-hook
+   #'evil-snipe-mode)
