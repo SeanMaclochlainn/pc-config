@@ -77,7 +77,7 @@ NC='\033[0m' # No Color
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history-substring-search direnv zsh-syntax-highlighting zsh-autosuggestions autojump)
+plugins=(git history-substring-search direnv zsh-syntax-highlighting zsh-autosuggestions autojump zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,48 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-
-# bindkey -v
-# export KEYTIMEOUT=1
-
-# autoload edit-command-line; zle -N edit-command-line
-# bindkey '^v' edit-command-line
-
-# # Use vim keys in tab complete menu:
-# bindkey -M menuselect 'h' vi-backward-char
-# bindkey -M menuselect 'j' vi-down-line-or-history
-# bindkey -M menuselect 'k' vi-up-line-or-history
-# bindkey -M menuselect 'l' vi-forward-char
-# bindkey -M menuselect 'left' vi-backward-char
-# bindkey -M menuselect 'down' vi-down-line-or-history
-# bindkey -M menuselect 'up' vi-up-line-or-history
-# bindkey -M menuselect 'right' vi-forward-char
-
-# # Change cursor shape for different vi modes
-# function zle-keymap-select {
-#     if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
-#         echo -ne '\e[1 q'
-#     elif [[ ${KEYMAP} == main ]] ||
-#          [[ ${KEYMAP} == viins ]] ||
-#          [[ ${KEYMAP} == '' ]] ||
-#          [[ $1 == 'beam' ]] ||; then
-#         echo -ne '\e[5 q'
-#     fi
-# }
-# zle -N zle-keymap-select
-
-# zle-line-init() {
-#     zle -K viins
-#     echo -ne "\e[5 q"
-# }
-# zle -N zle-line-init
-
-# echo -ne '\e[5 q'
-# preexec() { echo -ne '\e[5 q' ;}
-
-# # Fix backspace bug when switching modes
-# bindkey "^?" backward-delete-char
 
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
     alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
