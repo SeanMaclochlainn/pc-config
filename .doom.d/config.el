@@ -327,22 +327,12 @@
   (treemacs-follow-mode 1)
   (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action))
 
-(defun evil-scroll-down-fixed ()
-  (interactive)
-  (evil-scroll-down 4))
-(defun evil-scroll-up-fixed ()
-  (interactive)
-  (evil-scroll-up 4))
-
 (evil-define-command evil-insert-mode-paste (count &optional register yank-handler)
   "Extends evil-paste-before so that the cursor is moved to the end of the inserted text"
   :suppress-operator t
   (interactive "*P<x>")
   (evil-paste-before count register yank-handler)
   (forward-char))
-
-(map! :nve "C-d" #'evil-scroll-down-fixed)
-(map! :nve "C-u" #'evil-scroll-up-fixed)
 
 (map! :nve "C-c b" #'copy-python-breakpoint-to-kill-ring)
 (map! :nve "C-c r b" #'remove-python-project-breakpoints)
@@ -534,3 +524,6 @@
 ;; disables evil-snipe s/S
 (remove-hook 'doom-first-input-hook
    #'evil-snipe-mode)
+
+(setq doom-font (font-spec :family "monospace" :size 16 :weight 'bold) ;;semi-light ;;normal
+      doom-variable-pitch-font (font-spec :family "sans" :size 13))
