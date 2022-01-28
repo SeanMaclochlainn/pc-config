@@ -203,10 +203,6 @@ if [ "$PC_USAGE" = "work" ];
 then
  export DISPLAY=$(ip route | awk '/default via / {print $3; exit}' 2>/dev/null):0.0
  export LIBGL_ALWAYS_INDIRECT=1
-
-
- alias pytest="pytest --disable-warnings" # should only disable specific warnings
-
  xset r rate 250 100
 fi
 
@@ -217,3 +213,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=$HOME/code/utilities:$PATH
 
 export BAT_PAGER=""
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
