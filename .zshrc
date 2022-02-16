@@ -23,6 +23,7 @@ YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -77,7 +78,7 @@ NC='\033[0m' # No Color
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history-substring-search direnv zsh-syntax-highlighting zsh-autosuggestions autojump zsh-vi-mode)
+plugins=(git history-substring-search direnv zsh-syntax-highlighting zsh-autosuggestions autojump)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -116,8 +117,6 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias dvorak-keyboard="gsettings set org.gnome.desktop.input-sources sources \"[('xkb', 'us+dvorak'), ('xkb', 'us'), ('xkb', 'gb')]\""
 alias us-keyboard="gsettings set org.gnome.desktop.input-sources sources \"[('xkb', 'us'), ('xkb', 'us+dvorak'), ('xkb', 'gb')]\""
 
-alias start-vpn="openvpn3-autoload --directory ~/Documents/openvpn3/autoload"
-alias stop-vpn="~/Documents/openvpn3/stop-vpn.sh"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
 alias enable-swap-escape="gsettings set org.gnome.desktop.input-sources xkb-options \"['caps:swapescape']\""
@@ -214,5 +213,4 @@ export PATH=$HOME/code/utilities:$PATH
 
 export BAT_PAGER=""
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+
