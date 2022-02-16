@@ -523,7 +523,8 @@
 
 ;; disables evil-snipe s/S
 (remove-hook 'doom-first-input-hook
-   #'evil-snipe-mode)
+             #'evil-snipe-mode)
 
-(setq doom-font (font-spec :family "monospace" :size 16 :weight 'bold) ;;semi-light ;;normal
-      doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(if (is-work-pc)
+    (setq doom-font (font-spec :family "monospace" :size 16 :weight 'bold) ;;semi-light ;;normal
+          doom-variable-pitch-font (font-spec :family "sans" :size 13)))
