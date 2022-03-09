@@ -196,7 +196,7 @@ alias u="update_os_packages && update_pc_config && update_utilities && ~/.emacs.
 setopt share_history
 bindkey '\ef' emacs-forward-word
 
-export PYTHONSTARTUP="$HOME/code/github-libraries/pythonrc/pythonrc.py"
+export PYTHONSTARTUP="$HOME/code/pythonrc/pythonrc.py"
 is_wsl=$(grep -c WSL /proc/version)
 if [ "$PC_USAGE" = "work" ];
 then
