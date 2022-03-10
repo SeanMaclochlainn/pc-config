@@ -522,6 +522,10 @@
   :config
   (setq org-startup-with-inline-images t org-attach-id-dir (concat (getenv "DRIVE") "/notes/org-roam/attach") org-startup-folded t))
 
+(use-package! avy
+  :config
+  (setq avy-case-fold-search nil))
+
 (setq display-line-numbers-type 'visual)
 (package-initialize)
 (when (memq window-system '(mac ns x))
