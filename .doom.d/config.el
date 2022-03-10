@@ -63,10 +63,17 @@
 
 (use-package! realgud-ipdb)
 
-(fset 'breakpoint-below
-      (kmacro-lambda-form [escape ?o ?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) ?\C-s escape] 0 "%d"))
 (fset 'insert-mode-breakpoint
       (kmacro-lambda-form [?b ?r ?e ?a ?k ?p ?o ?i ?n ?t ?\( ?\) ?\C-s] 0 "%d"))
+
+(defun breakpoint-below()
+  (interactive)
+  (evil-open-below 1)
+  (if (string= major-mode "python-mode")
+      (insert "breakpoint()"))
+  (if (string= major-mode "typescript-mode")
+      (insert "debugger;")))
+
 (define-key global-map (kbd "<f8>") 'breakpoint-below)
 (map! :i "C-c b" #'insert-mode-breakpoint)
 
@@ -335,7 +342,7 @@
   (forward-char))
 
 (map! :nve "C-c b" #'copy-python-breakpoint-to-kill-ring)
-(map! :nve "C-c r b" #'remove-python-project-breakpoints)
+(map! :nve "C-c r b" #'remove-project-breakpoints)
 (map! :nve "C-c t" #'copy-python-test-path)
 (map! :i "C-c v" #'evil-insert-mode-paste)
 (map! :nve "C-c w c" #'wsl-copy)
@@ -350,7 +357,7 @@
 (map! :leader
       (:prefix ("p" . "project")
        :desc "Remove project breakpoints"
-       "m r" #'remove-python-project-breakpoints))
+       "m r" #'remove-project-breakpoints))
 
 (map! :leader
       (:prefix ("p" . "project")
@@ -399,7 +406,7 @@
        :desc "Vterm"
        "c" #'clear-vterm))
 
-(defun remove-python-project-breakpoints ()
+(defun remove-project-breakpoints ()
   (interactive)
   (shell-command (format "%s %s" "~/code/utilities/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
   )
