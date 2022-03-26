@@ -27,7 +27,8 @@
            company           ; the ultimate code completion backend
            ;;helm              ; the *other* search engine for love and life
            ;;ido               ; the other *other* search engine...
-           (ivy +prescient +icons)               ; a search engine for love and life
+           ;; (ivy +prescient +icons)               ; a search engine for love and life
+           vertico
 
            :ui
            ;;deft              ; notational velocity for Emacs
@@ -184,6 +185,7 @@
            ;;irc               ; how neckbeards socialize
            ;;(rss +org)        ; emacs as an RSS reader
            ;;twitter           ; twitter client https://twitter.com/vnought
+           everywhere        ; *leave* Emacs!? You must be joking
 
            :config
            ;;literate
@@ -197,7 +199,8 @@
          company           ; the ultimate code completion backend
          ;;helm              ; the *other* search engine for love and life
          ;;ido               ; the other *other* search engine...
-         (ivy +prescient +icons)               ; a search engine for love and life
+         ;; (ivy +prescient +icons)               ; a search engine for love and life
+         vertico
 
          :ui
          ;;deft              ; notational velocity for Emacs
@@ -354,6 +357,7 @@
          ;;irc               ; how neckbeards socialize
          ;;(rss +org)        ; emacs as an RSS reader
          ;;twitter           ; twitter client https://twitter.com/vnought
+         everywhere        ; *leave* Emacs!? You must be joking
 
          :config
          ;;literate
