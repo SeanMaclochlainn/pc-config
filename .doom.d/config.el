@@ -72,7 +72,9 @@
   (if (string= major-mode "python-mode")
       (insert "breakpoint()"))
   (if (string= major-mode "typescript-mode")
-      (insert "debugger;")))
+      (insert "debugger;"))
+  (evil-escape)
+  (save-buffer))
 
 (define-key global-map (kbd "<f8>") 'breakpoint-below)
 (map! :i "C-c b" #'insert-mode-breakpoint)
@@ -151,7 +153,7 @@
       "C-h" #'backward-delete-char-untabify)
 (map! :n "C-l" #'evil-scroll-line-down)
 (map! :nive "C-s" #'save-buffer)
-(map! :nive "C-t" #'swiper)
+(map! :nive "C-t" #'+default/search-buffer)
 ;; EAF
 ;; (use-package! eaf
 ;;   :load-path "~/.emacs.d/site-lisp/emacs-application-framework" ; Set to "/usr/share/emacs/site-lisp/eaf" if installed from AUR
