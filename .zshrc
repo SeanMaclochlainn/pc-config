@@ -157,7 +157,7 @@ update_os_packages(){
     then
         sudo pacman -Syu --noconfirm && yay -Syu --answerclean None --answerdiff None
     else
-        sudo apt-get update && sudo apt-get -y upgrade
+        sudo apt update && sudo apt -y upgrade
     fi
 }
 
