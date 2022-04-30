@@ -108,6 +108,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+setopt INC_APPEND_HISTORY
+export HISTTIMEFORMAT="[%F %T] "
+setopt HIST_IGNORE_ALL_DUPS
+export HISTFILE=~/gdrive/zsh/.zsh_history
+
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
     alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
 fi
@@ -193,7 +200,6 @@ alias up="update_pc_config"
 alias uu="update_utilities"
 alias u="update_os_packages && update_pc_config && update_utilities && ~/.emacs.d/bin/doom --yes upgrade"
 
-setopt share_history
 bindkey '\ef' emacs-forward-word
 
 export PYTHONSTARTUP="$HOME/code/pythonrc/pythonrc.py"
