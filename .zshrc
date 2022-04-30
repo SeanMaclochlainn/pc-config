@@ -113,7 +113,13 @@ export HISTSIZE=1000000000
 setopt INC_APPEND_HISTORY
 export HISTTIMEFORMAT="[%F %T] "
 setopt HIST_IGNORE_ALL_DUPS
-export HISTFILE=~/gdrive/zsh/.zsh_history
+
+if [ "$PC_USAGE" = "personal" ];
+then
+  export HISTFILE=~/gdrive/zsh/.zsh_history
+else
+  export HISTFILE=~/zsh/.zsh_history
+fi
 
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
     alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
