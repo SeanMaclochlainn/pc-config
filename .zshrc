@@ -163,6 +163,8 @@ alias ns="npm run start"
 alias du="docker-compose up"
 alias ke="killall emacs"
 alias ni="npm install"
+alias nrp="npm run prettier"
+alias nrb="npm run build"
 alias s="source ~/.zshrc"
 
 update_os_packages(){
