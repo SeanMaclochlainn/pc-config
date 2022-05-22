@@ -7,6 +7,8 @@
 (setq confirm-kill-emacs nil)
 (setq neo-smart-open t)
 (global-set-key (kbd "<f9>") 'format-and-save)
+(setq recentf-save-file "~/gdrive/emacs/recent-files")
+(setq recentf-max-saved-items "10000")
 
 (defun format-and-save ()
   (interactive)
