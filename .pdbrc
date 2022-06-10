@@ -13,22 +13,12 @@ alias ps pi self
 # Print the locals.
 alias pl p_ locals() local:
 
-# Next and list, and step and list.
-alias nll n;;ll
-alias nl n;;l
-alias sl s;;l
-
-# alias v pp vars(%1)
-
+# print callable methods
 alias d pp dir(%1)
 
-# alias v pp %1 if type(%1)==dict or not hasattr(%1, '__dict__') else vars(%1)
-
-
-# pr = print('\033[95m');pprint.pp(%1);print('\033[0m')
-# alias v pprint.pp(%1) if type(%1)==dict or not hasattr(%1, '__dict__') else pprint.pp(vars(%1))
-
-
 alias v view_item(%1)
+
 alias pt view_table(%1)
+
+# import utils
 alias i import os;exec(open(os.path.expanduser("~/.pdbrc_utils.py"), 'rU').read())
