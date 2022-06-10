@@ -119,9 +119,8 @@
   :config
   (set-popup-rule! "^vterm" :ignore t))
 
-(use-package! treemacs
-  :config
-  (setq treemacs-follow-mode t))
+(map! :leader
+      :desc "Display current project only in treemacs" "p d" #'treemacs-display-current-project-exclusively)
 
 (map! :leader
       :desc "terminal vterm" "o t" #'vterm)

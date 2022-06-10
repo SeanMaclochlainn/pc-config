@@ -64,13 +64,9 @@
 ;; (package! deferred)
 ;; (package! s)
 
-
-;; (package! solarized-theme)
-
 (if (not (string= user-real-login-name "smcloughlin"))
     (package! mozc))
 (package! command-log-mode)
 (package! exec-path-from-shell)
 (package! csv-mode)
 (package! good-scroll)
-(unpin! json-mode)
