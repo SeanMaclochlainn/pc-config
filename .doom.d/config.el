@@ -412,17 +412,17 @@
 
 (defun remove-project-breakpoints ()
   (interactive)
-  (shell-command (format "%s %s" "~/code/utilities/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
+  (shell-command (format "%s %s" "~/code/utilities/scripts/remove-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
   )
 
 (defun disable-python-project-breakpoints ()
   (interactive)
-  (shell-command (format "%s %s" "~/code/utilities/disable-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
+  (shell-command (format "%s %s" "~/code/utilities/scripts/disable-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
   )
 
 (defun enable-python-project-breakpoints ()
   (interactive)
-  (shell-command (format "%s %s" "~/code/utilities/enable-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
+  (shell-command (format "%s %s" "~/code/utilities/scripts/enable-project-breakpoints.sh" (string-trim-right (projectile-project-root) "/")))
   )
 
 
