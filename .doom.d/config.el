@@ -524,7 +524,7 @@
 
 (use-package! org
   :config
-  (setq org-startup-with-inline-images t org-attach-id-dir (concat (getenv "DRIVE") "/notes/org-roam/attach") org-startup-folded t))
+  (setq org-startup-with-inline-images t org-attach-id-dir (concat (getenv "DRIVE") "/notes/org-roam/attach") org-startup-folded t org-pretty-entities t))
 
 (use-package! avy
   :config
