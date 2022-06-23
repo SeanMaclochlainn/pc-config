@@ -79,6 +79,14 @@
   (evil-escape)
   (save-buffer))
 
+(defun ignore-lint()
+  (interactive)
+  (if (or (string= major-mode "rjsx-mode")
+          (string= major-mode "typescript-mode"))
+      (insert "// @ts-ignore"))
+  (evil-escape)
+  (save-buffer))
+
 (define-key global-map (kbd "<f8>") 'breakpoint-below)
 (map! :i "C-c b" #'insert-mode-breakpoint)
 
