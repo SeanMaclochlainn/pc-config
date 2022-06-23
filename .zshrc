@@ -165,6 +165,7 @@ alias ke="pidof emacs && killall emacs || pidof emacs27 && killall emacs27"
 alias ni="npm install"
 alias nrp="npm run prettier"
 alias nrb="npm run build"
+alias nrt="npm run test"
 alias s="source ~/.zshrc"
 
 update_os_packages(){
