@@ -166,6 +166,8 @@ alias ni="npm install"
 alias nrp="npm run prettier"
 alias nrb="npm run build"
 alias nrt="npm run test"
+alias nwt="npm run test -- --watchAll --no-cache"
+alias nrd="npm run debug"
 alias s="source ~/.zshrc"
 
 update_os_packages(){
