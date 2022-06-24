@@ -86,6 +86,7 @@
       (insert "// @ts-ignore"))
   (evil-escape)
   (save-buffer))
+(map! :nie "C-c i" #'ignore-lint)
 
 (define-key global-map (kbd "<f8>") 'breakpoint-below)
 (map! :i "C-c b" #'insert-mode-breakpoint)
