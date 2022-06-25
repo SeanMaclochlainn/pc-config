@@ -205,11 +205,15 @@ update_utilities(){
     cd -
 }
 
+update_emacs(){
+  ~/.emacs.d/bin/doom --force --debug upgrade
+}
+
 alias ul="update_os_packages"
-alias ue="~/.emacs.d/bin/doom --yes upgrade"
+alias ue="update_emacs"
 alias up="update_pc_config"
 alias uu="update_utilities"
-alias u="update_os_packages && update_pc_config && update_utilities && ~/.emacs.d/bin/doom --yes upgrade"
+alias u="update_os_packages && update_pc_config && update_utilities && update_emacs"
 
 bindkey '\ef' emacs-forward-word
 
