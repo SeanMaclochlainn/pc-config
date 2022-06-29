@@ -461,12 +461,6 @@
 (define-key! :keymaps +default-minibuffer-maps
   "C-k" #'kill-line)
 
-(use-package! doom-themes
-  :init (setq doom-theme 'gruvbox-dark-medium))
-
-(custom-set-faces
- '(default ((t (:background "black")))))
-
 (if (is-work-pc)
     (setq counsel-async-command-delay 0.3))
 
