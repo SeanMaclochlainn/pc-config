@@ -7,7 +7,8 @@
 (setq confirm-kill-emacs nil)
 (setq neo-smart-open t)
 (global-set-key (kbd "<f9>") 'format-and-save)
-(setq recentf-save-file "~/gdrive/emacs/recent-files")
+(if (not (is-work-pc))
+    (setq recentf-save-file "~/gdrive/emacs/recent-files"))
 (setq recentf-max-saved-items "10000")
 
 (defun format-and-save ()
@@ -27,10 +28,6 @@
 (setq confirm-kill-processes nil)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq org-startup-folded t)
-(use-package! magit
-  :config
-  (define-key magit-section-mode-map (kbd "<C-tab>") nil) ;; conflicts with nswbuff
-  )
 
 (with-eval-after-load 'lsp-mode
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.env_python3.8\\'")
@@ -538,6 +535,7 @@
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 (add-to-list 'auto-mode-alist '("tsconfig.json" . jsonc-mode))
+;;(add-to-list 'auto-mode-alist (cons (rx ".xml" eos) 'so-long-mode))
 
 ;; disables evil-snipe s/S
 (remove-hook 'doom-first-input-hook

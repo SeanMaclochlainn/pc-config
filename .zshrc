@@ -253,7 +253,6 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 export PATH=$HOME/code/utilities/scripts:$PATH
+export PATH=$HOME/code/work-utility-scripts:$PATH
 
 export BAT_PAGER=""
-
-
