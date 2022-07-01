@@ -81,6 +81,8 @@
   (if (or (string= major-mode "rjsx-mode")
           (string= major-mode "typescript-mode"))
       (insert "// @ts-ignore"))
+  (if (string= major-mode "python-mode")
+      (insert "# type: ignore"))
   (evil-escape)
   (save-buffer))
 (map! :nie "C-c i" #'ignore-lint)
