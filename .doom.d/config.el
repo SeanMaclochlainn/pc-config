@@ -69,7 +69,7 @@
   (interactive)
   (evil-open-below 1)
   (if (string= major-mode "python-mode")
-      (insert "breakpoint()"))
+      (insert "import ipdb; ipdb.set_trace()"))
   (if (or (string= major-mode "rjsx-mode")
           (string= major-mode "typescript-mode"))
       (insert "debugger;"))
@@ -126,6 +126,10 @@
 (use-package! vterm
   :config
   (set-popup-rule! "^vterm" :ignore t))
+
+(setq evil-insert-state-cursor '(bar "#00FF00")
+      evil-visual-state-cursor '(box "#FF00FF")
+      evil-normal-state-cursor '(box "#E2E8EF"))
 
 (map! :leader
       :desc "Display current project only in treemacs" "p d" #'treemacs-display-current-project-exclusively)
@@ -354,7 +358,6 @@
   (forward-char))
 
 (map! :nve "C-c b" #'copy-python-breakpoint-to-kill-ring)
-(map! :nve "C-c r b" #'remove-project-breakpoints)
 (map! :nve "C-c t" #'copy-python-test-path)
 (map! :i "C-c v" #'evil-insert-mode-paste)
 (map! :nve "C-c w c" #'wsl-copy)
