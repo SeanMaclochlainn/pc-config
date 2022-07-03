@@ -18,11 +18,14 @@
   )
 (define-key global-map (kbd "C-c r") 'vr/replace)
 (define-key global-map (kbd "C-c q") 'vr/query-replace)
+
 ;; if you use multiple-cursors, this is for you:
 (define-key global-map (kbd "C-c m") 'vr/mc-mark)
-;; to use visual-regexp-steroids's isearch instead of the built-in regexp isearch, also include the following lines:
-(define-key global-map (kbd "C-M-r") 'vr/isearch-backward) ;; C-M-r
-(define-key global-map (kbd "C-M-s") 'vr/isearch-forward) ;; C-M-s
+
+;; use visual-regexp-steroids's isearch instead of the built-in regexp isearch
+(define-key global-map (kbd "C-M-r") 'vr/isearch-backward)
+(define-key global-map (kbd "C-M-s") 'vr/isearch-forward)
+
 (define-key global-map (kbd "C-c C") 'evilnc-comment-and-kill-ring-save)
 (setq helm-candidate-number-limit 300)
 (setq confirm-kill-processes nil)
@@ -37,20 +40,6 @@
 (use-package! lsp-mode
   :custom
   (lsp-headerline-breadcrumb-enable t))
-
-(use-package! nswbuff                    ; Quick switching between buffers
-  :bind* (("<C-end>"           . nswbuff-switch-to-next-buffer)
-          ("<C-home>" . nswbuff-switch-to-previous-buffer))
-  ;; (use-package! nswbuff                    ; Quick switching between buffers
-  ;;   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
-  ;;           ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
-  (:map nswbuff-override-map
-   ("b" . nswbuff-kill-this-buffer))
-  :config (setq nswbuff-display-intermediate-buffers t
-                nswbuff-status-window-layout 'minibuffer
-                nswbuff-exclude-buffer-regexps '("^ .*" "^\\*.*\\*" ".*magit.*" "placeholder-file")
-                nswbuff-buffer-list-function 'nswbuff-projectile-buffer-list
-                ))
 
 (defun disable-y-or-n-p (orig-fun &rest args)
   (cl-letf (((symbol-function 'y-or-n-p) (lambda (prompt) t)))
@@ -117,9 +106,6 @@
              (format " in [%s]" project-name))))))
 
 (with-eval-after-load 'evil
-  ;; (defalias #'forward-evil-word #'forward-evil-symbol)
-  ;; make evil-search-word look for symbol rather than word boundaries
-  ;; (setq-default evil-symbol-word-search t)
   (setq evil-want-fine-undo t)
   )
 
@@ -168,40 +154,6 @@
 (map! :n "C-l" #'evil-scroll-line-down)
 (map! :nive "C-s" #'save-buffer)
 (map! :nive "C-t" #'+default/search-buffer)
-;; EAF
-;; (use-package! eaf
-;;   :load-path "~/.emacs.d/site-lisp/emacs-application-framework" ; Set to "/usr/share/emacs/site-lisp/eaf" if installed from AUR
-;;   :init
-;;   (use-package! epc :defer t :ensure t)
-;;   (use-package! ctable :defer t :ensure t)
-;;   (use-package! deferred :defer t :ensure t)
-;;   (use-package! s :defer t :ensure t)
-;;   :custom
-;;   (eaf-browser-continue-where-left-off t)
-;;   :config
-;;   (eaf-setq eaf-browser-enable-adblocker "true")
-;;   (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
-;;   (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
-;;   (eaf-bind-key take_photo "p" eaf-camera-keybinding)
-;;   (eaf-bind-key nil "M-q" eaf-browser-keybinding)) ;; unbind, see more in the Wiki
-;; (require 'eaf-evil)
-
-;; (define-key key-translation-map (kbd "SPC")
-;;     (lambda (prompt)
-;;       (if (derived-mode-p 'eaf-mode)
-;;           (pcase eaf--buffer-app-name
-;;             ("browser" (if  (string= (eaf-call-sync "call_function" eaf--buffer-id "is_focus") "True")
-;;                            (kbd "SPC")
-;;                          (kbd eaf-evil-leader-key)))
-;;             ("pdf-viewer" (kbd eaf-evil-leader-key))
-;;             ("image-viewer" (kbd eaf-evil-leader-key))
-;;             (_  (kbd "SPC")))
-;;         (kbd "SPC"))))
-;; (dolist (theme custom-enabled-themes)
-;;   (disable-theme theme))
-;; (disable-theme 'doom-one)
-;; (disable-theme 'solaire-swap-bg-theme)
-
 
 (defun wsl-copy (start end)
   (interactive "r")
@@ -276,45 +228,6 @@
        :desc "other window"
        "o" #'other-window))
 
-
-
-;; (unless (display-graphic-p)
-;;         ;; activate mouse-based scrolling
-;;         (xterm-mouse-mode 1)
-;;         (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
-;;         (global-set-key (kbd "<mouse-5>") 'scroll-up-line)
-
-;;         (define-key evil-visual-state-map (kbd "y") 'wsl-copy)
-;;         (add-hook 'vterm-copy-mode-hook
-;;                 (lambda ()
-
-;;                         (if vterm-copy-mode
-;;                                 (progn
-;;                                 (set-background-color "Grey31")
-;;                                 (message "copy mode enabled")
-;;                                 )
-;;                         (progn
-;;                                 (set-background-color "#282828")
-;;                                 (message "copy mode disabled")
-;;                                 )
-;;                         )
-;;                         )
-;;                 )
-
-;;         (add-hook 'evil-insert-state-entry-hook
-;;                 (lambda ()
-;;                 (progn
-;;                 (set-background-color "Grey31")
-;;                 (message "entered insert mode")
-;;                 )))
-
-;;         (add-hook 'evil-insert-state-exit-hook
-;;                 (lambda ()
-;;                 (progn
-;;                 (set-background-color "#282828")
-;;                 (message "exited insert mode")
-;;                 )))
-;;   )
 (use-package! typescript-mode
   :config(setq typescript-indent-level 2))
 

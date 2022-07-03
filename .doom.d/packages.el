@@ -49,12 +49,9 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! nswbuff)
-
 (package! visual-regexp)
 (package! visual-regexp-steroids)
 (package! realgud-ipdb)
-(package! gruvbox-theme)
 ;; (package! zenburn-theme)
 
 ;; EAF
