@@ -127,10 +127,6 @@
 (map! :leader
       :desc "terminal vterm" "o t" #'vterm)
 
-(map! (:map evil-window-map
-       "s"       #'+evil/window-split-and-follow
-       "v"       #'+evil/window-vsplit-and-follow))
-
 (map! :ie "C-h" #'backward-delete-char-untabify)
 (map! :i "C-d" #'delete-forward-char)
 (map! (:map (minibuffer-local-map
