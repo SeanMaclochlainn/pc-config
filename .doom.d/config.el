@@ -11,6 +11,10 @@
     (setq recentf-save-file "~/gdrive/emacs/recent-files"))
 (setq recentf-max-saved-items "10000")
 
+(use-package! recentf
+  :config
+  (setq recentf-max-saved-items "10000"))
+
 (defun format-and-save ()
   (interactive)
   (+format/buffer)
