@@ -256,3 +256,4 @@ export PATH=$HOME/code/utilities/scripts:$PATH
 export PATH=$HOME/code/work-utility-scripts:$PATH
 
 export BAT_PAGER=""
+export LEDGER_FILE=~/gdrive/finances/hledger/.hledger.journal
